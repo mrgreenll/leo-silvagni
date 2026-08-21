@@ -1,0 +1,2284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Leo Silvagni — Websites, software and workflows</title>
+<meta name="description" content="I help businesses shape ideas into websites, software and workflows — designed, built and maintained from Krabi, Thailand.">
+<link rel="canonical" href="https://leosilvagni.com/">
+<!-- Link preview. This page is shared by pasting the URL into WhatsApp and Line,
+     where a bare link renders as plain text. og:image must be absolute, which is
+     only possible now that the site has a stable domain. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leosilvagni.com/">
+<meta property="og:title" content="Leo Silvagni — Websites, software and workflows">
+<meta property="og:description" content="I help businesses shape ideas into websites, software and workflows — designed, built and maintained from Krabi, Thailand.">
+<meta property="og:image" content="https://leosilvagni.com/assets/shots/blue-orchid-beach.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="889">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0c0c0d">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ── Tokens ──────────────────────────────────────────────────────────────
+   The shell stays quieter than the work. Near-black ground, one warm
+   accent (brass — hotel lamplight, not neon), warm bone type. Every
+   screenshot is mounted on a raised matte so that even the darkest of
+   them keeps a readable edge. */
+:root{
+  --ink:#0c0c0d;          /* page ground */
+  --card:#17171a;         /* raised matte the screenshots are mounted on */
+  --panel:#121215;        /* offer panel */
+  --bone:#ece6dc;         /* primary type, warm off-white */
+  --dim:#9d968b;          /* secondary type */
+  --label:#b6afa3;        /* status labels — brighter than body dim */
+  --brass:#cf9a58;        /* the single accent */
+  --brass-soft:rgba(207,154,88,.34);
+  --hair:rgba(236,230,220,.12);
+  --hair-strong:rgba(236,230,220,.20);
+
+  /* One sans for display and body alike. The token keeps the name --serif
+     because the whole sheet asks for it by that name; renaming it would
+     touch a hundred declarations to say the same thing. Thai stays on IBM
+     Plex Sans Thai — Plus Jakarta Sans has no Thai glyphs. */
+  --serif:"Plus Jakarta Sans","IBM Plex Sans Thai",system-ui,-apple-system,sans-serif;
+  --sans: "Plus Jakarta Sans","IBM Plex Sans Thai",system-ui,-apple-system,sans-serif;
+
+  --gutter:22px;
+  --maxw:1120px;
+  --mat:8px;              /* the mount border around each screenshot */
+  --shot-ratio:1280/889;
+}
+@media (min-width:768px){ :root{ --gutter:40px; --mat:10px } }
+
+*,*::before,*::after{ box-sizing:border-box }
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth }
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.62;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+@media (min-width:768px){ body{ font-size:1.0938rem } }
+img{ max-width:100%; height:auto }
+a{ color:inherit; text-decoration:none }
+h1,h2,h3{ margin:0; font-weight:400; font-family:var(--serif); letter-spacing:-.012em }
+p{ margin:0 }
+
+/* ── Type scale ─────────────────────────────────────────────────────── */
+.t-display{ font-family:var(--serif); font-size:clamp(2.15rem,8.6vw,4.3rem); line-height:1.07; letter-spacing:-.02em }
+.t-h2{ font-family:var(--serif); font-size:clamp(1.85rem,6.4vw,2.9rem); line-height:1.1 }
+.t-h3{ font-family:var(--serif); font-size:clamp(1.4rem,4.8vw,1.8rem); line-height:1.15 }
+.t-lede{ font-family:var(--serif); font-size:clamp(1.28rem,5vw,1.75rem); line-height:1.3 }
+.t-body{ color:var(--dim); max-width:38ch }
+.t-micro{
+  font-family:var(--sans); font-size:.6875rem; font-weight:600;
+  letter-spacing:.17em; text-transform:uppercase; line-height:1;
+}
+.accent{ color:var(--brass); font-style:italic }
+.nowrap{ white-space:nowrap }   /* binds the last two words to kill orphans */
+
+/* ── Layout ─────────────────────────────────────────────────────────── */
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter) }
+.section{ padding-block:clamp(64px,13vw,116px) }
+.rule{ height:1px; background:var(--hair); border:0; margin:0 }
+
+/* ── Hero ───────────────────────────────────────────────────────────── */
+/* Full-bleed, not .wrap, so the spotlight can roam the whole viewport and
+   clip on the viewport edge. Constrained to .wrap it would cut the glow off
+   against an invisible 1120px wall — a hard-edged half-disc whenever the
+   cursor neared the column edge. .hero__inner carries the column instead. */
+.hero{
+  --glow:clamp(320px,34vw,520px);
+  position:relative; overflow:hidden;
+  padding-block:clamp(80px,17vw,132px) clamp(56px,11vw,96px);
+}
+.hero__inner{ position:relative; z-index:1 }
+/* shared by the hero masthead and the About eyebrow */
+.eyebrow{ color:var(--brass); display:block; margin-bottom:clamp(26px,6vw,38px) }
+.hero__line{ max-width:none }
+/* The accent — "shape" — rides inside the sentence now, so it stays inline;
+   the particle field wraps just that word, not a whole closing line. */
+@media (min-width:768px){ .hero__line{ max-width:24ch } }
+.hero__sub{
+  color:var(--dim); max-width:36ch;
+  margin-top:clamp(22px,5vw,30px);
+}
+.hero__meta{
+  color:var(--dim); margin-top:clamp(26px,6vw,36px);
+  display:flex; flex-wrap:wrap; gap:.55em; align-items:center;
+}
+.hero__meta span{ display:inline-flex; align-items:center; gap:.55em }
+.hero__meta i{ width:3px; height:3px; border-radius:50%; background:var(--brass); opacity:.85 }
+
+/* ── Orb ─────────────────────────────────────────────────────────────
+   A sibling of .hero__inner rather than a child of it, so the z-index:1 on
+   that column keeps the masthead above the orb without either one needing
+   to know about the other. On phones it sits dead centre and the type reads
+   straight over it; from 900px it slides into the right half, beside the
+   copy, which .hero__line already keeps to 20ch.
+
+   Deliberately NOT wearing .frame. It did, and .frame's display:block sits
+   later in this stylesheet at equal specificity, so it beat the display:none
+   that was meant to hide the whole thing on phones — the square shipped to
+   every mobile visitor. Nothing here depends on source order now. */
+.hero__orb{
+  position:absolute; z-index:0; pointer-events:none;
+  /* 33% lands the centre on the masthead's first line — around "hotels" —
+     rather than down by the meta row. Half the size it started at and pushed
+     into the right margin, clear of the copy. The offset is in vw so it holds
+     its position relative to the text across phone widths. */
+  top:33%; left:50%;
+  transform:translate(calc(-50% + 18vw),-50%);
+  width:min(58vw,300px); aspect-ratio:1;
+  display:grid; place-items:center; border-radius:50%;
+  background:radial-gradient(circle at 50% 46%, rgba(207,154,88,.10), transparent 64%);
+}
+.hero__orb::before,.hero__orb::after{
+  content:""; position:absolute; border-radius:50%; aspect-ratio:1;
+}
+.hero__orb::before{
+  width:50%; border:1px solid var(--brass-soft);
+  box-shadow:0 0 70px rgba(207,154,88,.12);
+  animation:orb 19s ease-in-out infinite;
+}
+.hero__orb::after{
+  width:76%; border:1px solid var(--hair);
+  animation:orb 26s ease-in-out infinite reverse;
+}
+@keyframes orb{
+  from{ transform:scale(.94); opacity:.55 }
+  50% { transform:scale(1.06); opacity:1 }
+  to  { transform:scale(.94); opacity:.55 }
+}
+@media (min-width:900px){
+  /* offset from centre rather than anchored to a viewport edge, so it tracks
+     the centred 1120px column instead of drifting away on wide screens.
+     The same offset is shared by .hero__figure below — the lamp sits inside
+     these rings, so the two must move as one. */
+  .hero__orb{
+    width:min(44vw,500px);
+    top:50%;                  /* the 33% above is a phone-only correction */
+    transform:translate(calc(-50% + min(26vw,380px)),-50%);
+    background:radial-gradient(circle at 50% 46%, rgba(207,154,88,.13), transparent 64%);
+  }
+}
+
+/* ── Spotlight ───────────────────────────────────────────────────────
+   Positioned by transform off a 0,0 origin rather than by left/top, so
+   tracking the cursor stays on the compositor instead of forcing layout on
+   every frame. JS sets --gx/--gy; the negative margin centres it. */
+.hero__glow{
+  position:absolute; top:0; left:0; z-index:0;
+  width:var(--glow); height:var(--glow);
+  margin:calc(var(--glow) / -2) 0 0 calc(var(--glow) / -2);
+  border-radius:50%; pointer-events:none;
+  background:radial-gradient(circle at center,
+    rgba(236,230,220,.11), rgba(207,154,88,.08) 45%, transparent 70%);
+  filter:blur(26px);
+  transform:translate3d(var(--gx,50vw), var(--gy,50%), 0);
+  opacity:0; transition:opacity .4s ease;
+  will-change:transform;
+}
+.hero.is-lit .hero__glow{ opacity:1 }
+
+/* ── Links & buttons ────────────────────────────────────────────────── */
+.cta{
+  display:inline-flex; align-items:center; gap:.6em;
+  min-height:48px; padding:12px 22px 12px 20px;
+  border:1px solid var(--hair-strong); border-radius:2px;
+  color:var(--bone); background:transparent;
+  font-size:.875rem; font-weight:500; letter-spacing:.03em;
+  transition:color .18s ease, border-color .18s ease, background-color .18s ease, transform .18s ease;
+}
+.cta__arrow{ color:var(--brass); transition:transform .22s cubic-bezier(.2,.7,.3,1) }
+.cta:hover{ color:var(--ink); background:var(--brass); border-color:var(--brass) }
+.cta:hover .cta__arrow{ color:var(--ink); transform:translateX(3px) }
+.cta:active{ transform:translateY(1px) }
+
+/* Secondary action. Doubled up as .cta.cta--quiet rather than left at
+   .cta--quiet so it outranks .cta:hover on specificity instead of on source
+   order — the same equal-specificity trap that put a square on every phone. */
+.cta.cta--quiet{ border-color:var(--hair); color:var(--dim) }
+.cta.cta--quiet:hover{
+  color:var(--bone); background:transparent; border-color:var(--hair-strong);
+}
+.cta.cta--quiet:hover .cta__arrow{ color:var(--brass); transform:translateY(2px) }
+/* points down because it goes down the page, not away to another one */
+.cta__arrow--down{ font-size:1.05em; line-height:1 }
+
+/* ── Status label — the page's structural motif ─────────────────────
+   Concept vs Client project is the real tension of this pitch, so the
+   label is the one repeating device. It sits above every project name.
+   In the DOM it follows the name; CSS order lifts it visually. */
+.tag{
+  order:-1; align-self:start;
+  display:inline-flex; align-items:center;
+  padding:6px 11px; margin-bottom:14px;
+  border:1px solid var(--hair-strong); border-radius:2px;
+  color:var(--label); background:rgba(236,230,220,.03);
+}
+.tag--concept{ color:var(--brass); border-color:var(--brass-soft); background:rgba(207,154,88,.07) }
+
+/* ── The mount: how every screenshot keeps its edges ─────────────────
+   zeetar.jpg is near-black at its top strip and both bottom corners
+   (measured luminance ~12 against a ~12 page ground), so an image sat
+   flush on the page would simply dissolve. Every shot is therefore
+   mounted: a raised card, a hairline card border, a visible matte
+   margin, and an inset ring drawn on the image's own four edges. The
+   frame is guaranteed by the shell, never by the picture. */
+.frame{
+  display:block; position:relative;
+  background:var(--card);
+  padding:var(--mat);
+  border-radius:3px;
+}
+.frame::after{
+  content:""; position:absolute; inset:var(--mat);
+  box-shadow:inset 0 0 0 1px var(--hair-strong);
+  border-radius:1px; pointer-events:none;
+}
+.shot{
+  display:block; width:100%; aspect-ratio:var(--shot-ratio);
+  object-fit:cover; border-radius:1px; background:#111;
+}
+/* The reel sits inside the feature's <a>. Without this the video swallows
+   the click and the live site never opens. */
+/* height:auto is required, not redundant: the video element carries a
+   height="…" presentational attribute, which maps to a used height CSS
+   can't override by omission. aspect-ratio only fills in a dimension that
+   is auto, so without this the box stays stuck at the attribute's height
+   at every width, and object-fit:cover crops the clip to fill it. Images
+   don't hit this because browsers derive an aspect ratio from an img's
+   width/height attributes; video gets no such treatment. */
+video.shot{ pointer-events:none; height:auto }
+
+/* ── Project card ───────────────────────────────────────────────────── */
+.card{
+  display:block; position:relative;
+  background:var(--card);
+  border:1px solid var(--hair);
+  border-radius:4px;
+  padding:var(--mat);
+  transition:border-color .22s ease, transform .28s cubic-bezier(.2,.7,.3,1);
+}
+.card .frame{ padding:0; border-radius:2px }
+.card .frame::after{ inset:0 }
+.card__body{ display:flex; flex-direction:column; padding:20px 12px 10px }
+@media (min-width:768px){ .card__body{ padding:24px 14px 12px } }
+.card__title{ margin-bottom:10px }
+.card__blurb{ color:var(--dim); font-size:.9375rem; line-height:1.58 }
+.card__open{
+  display:inline-flex; align-items:center; gap:.5em;
+  min-height:44px; margin-top:6px;
+  font-size:.8125rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--label);
+  transition:color .18s ease;
+}
+.card__open i{ color:var(--brass); font-style:normal; transition:transform .22s cubic-bezier(.2,.7,.3,1) }
+.card:hover{ border-color:var(--hair-strong) }
+.card:hover .card__open{ color:var(--bone) }
+.card:hover .card__open i{ transform:translateX(3px) }
+.card:active{ transform:translateY(1px) }
+
+/* ── Blue Orchid feature ────────────────────────────────────────────── */
+.feature__head{ display:flex; flex-direction:column; margin-bottom:clamp(22px,5vw,30px) }
+.feature__name{ margin-bottom:clamp(18px,4vw,24px) }
+.feature__lede{ max-width:24ch; margin-bottom:clamp(30px,7vw,44px) }
+@media (min-width:768px){ .feature__lede{ max-width:34ch } }
+.feature__open{
+  display:block; border-radius:5px;
+  /* Held well under the column: at full 1120px the reel overwhelmed the
+     page — the feature should lead the work, not shout over it. Phones
+     keep the full width; there it is already small. */
+  max-width:min(100%, 720px);
+  transition:transform .3s cubic-bezier(.2,.7,.3,1);
+}
+.feature__open .frame{
+  background:var(--card);
+  box-shadow:0 0 0 1px var(--brass-soft);
+}
+.feature__open .frame::after{ box-shadow:inset 0 0 0 1px rgba(236,230,220,.24) }
+.feature__foot{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:16px 24px; margin-top:22px;
+}
+.feature__blurb{ color:var(--dim); font-size:.9375rem; max-width:44ch }
+/* From 900px the foot steps out from under the reel: video left at its cap,
+   blurb and CTA as a column to its right, grounded on the frame's bottom
+   edge. Below 900px everything stays stacked and full-width. */
+@media (min-width:900px){
+  .feature__open{
+    max-width:none;
+    display:flex; align-items:flex-end; gap:clamp(28px,4.5vw,56px);
+  }
+  .feature__open .frame{ flex:0 0 auto; width:min(720px,66%); min-width:0 }
+  .feature__foot{ margin-top:0; flex-direction:column; align-items:flex-start; gap:20px }
+  .feature__blurb{ max-width:30ch }
+}
+/* the CTA is inside the link, so it answers to the whole block being hovered */
+.feature__open:hover .cta{ color:var(--ink); background:var(--brass); border-color:var(--brass) }
+.feature__open:hover .cta__arrow{ color:var(--ink); transform:translateX(3px) }
+.feature__open:active{ transform:translateY(1px) }
+
+/* ── Grid ───────────────────────────────────────────────────────────── */
+.grid__head{ margin-bottom:clamp(34px,8vw,54px) }
+.grid__head h2{ margin-bottom:12px }
+.grid{ display:grid; gap:clamp(30px,7vw,44px); grid-template-columns:1fr }
+@media (min-width:820px){
+  .grid{ grid-template-columns:1fr 1fr; gap:44px 34px }
+  .grid > :nth-child(even){ margin-top:56px }   /* editorial hang, not a bootstrap row */
+}
+
+/* ── About ──────────────────────────────────────────────────────────── */
+/* flat, single-class selectors — no .about p (0,1,1) to out-rank them */
+.about__body{ max-width:54ch; font-size:clamp(1.0625rem,1.35vw,1.2rem); line-height:1.62 }
+.about__verdict{ margin-top:clamp(24px,5vw,32px); max-width:22ch; color:var(--bone) }
+
+/* ── Offer ──────────────────────────────────────────────────────────── */
+.offer__panel{
+  background:var(--panel);
+  border:1px solid var(--hair);
+  border-radius:5px;
+  padding:clamp(28px,7vw,52px) clamp(22px,5vw,52px);
+}
+/* 18ch was a mobile measure leaking into every width and inverting the
+   hierarchy against 52ch body copy. The second sentence takes its own
+   line by structure, so the measure can stay generous at all sizes. */
+.offer__panel h2{
+  font-size:clamp(1.7rem,5.6vw,2.9rem);
+  max-width:34ch; margin-bottom:clamp(22px,5vw,28px);
+}
+.offer__h2b{ display:block }
+.offer__lead{ max-width:52ch }
+.offer__panel p+p{ margin-top:1.05em }
+.offer__price{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:.15em .5em;
+  margin-block:clamp(30px,7vw,42px) 6px;
+  padding-top:clamp(26px,6vw,34px);
+  border-top:1px solid var(--hair);
+}
+.offer__price{ scroll-margin-top:clamp(84px,17vh,150px) }
+.offer__amount{ font-family:var(--serif); font-size:clamp(2.5rem,11vw,3.6rem); line-height:1; color:var(--brass) }
+.offer__per{ color:var(--dim); font-size:.9375rem }
+/* matched specificity with .offer__panel p+p instead of reaching for !important */
+.offer__panel .offer__terms{ margin-top:1.35em; max-width:50ch }
+.offer__panel .offer__close{ margin-top:clamp(26px,6vw,34px); color:var(--bone) }
+
+/* ── Contact ────────────────────────────────────────────────────────── */
+.contact h2{ margin-bottom:clamp(28px,6vw,38px) }
+.contact__list{ display:grid; gap:10px; max-width:520px }
+.contact__row{
+  display:flex; align-items:center; gap:16px;
+  min-height:60px; padding:12px 18px;
+  border:1px solid var(--hair); border-radius:3px;
+  background:rgba(236,230,220,.02);
+}
+/* All three source icons are dark artwork drawn for a light background, which
+   would be invisible here. invert() flips them to light-on-dark, and the
+   screen blend drops the resulting black ground out entirely — so the two
+   with an opaque square behind them stop showing it, without needing the
+   files re-cut. Held below full brightness so the row's phone number stays
+   the thing you read first. */
+.contact__icon{
+  flex:0 0 24px; width:24px; height:24px;
+  object-fit:contain;
+  filter:invert(1);
+  mix-blend-mode:screen;
+  opacity:.72;
+  transition:opacity .18s ease;
+}
+/* the mail artwork carries more empty margin than the other two, so it needs
+   a nudge to read at the same size as them */
+.contact__icon--mail{ transform:scale(1.12) }
+a.contact__row:hover .contact__icon{ opacity:1 }
+
+/* The icon and its gap cost the row 40px, which a phone does not have to
+   spare: side by side at 393px the email address wrapped onto a second line
+   and at 320px the phone number broke mid-number. Below 480px the label sits
+   above the value instead, which hands the value the whole width left of the
+   icon. Above it there is room for one line and the labels align as before. */
+.contact__text{ display:flex; flex:1 1 auto; min-width:0; flex-direction:column; gap:1px }
+.contact__key{ color:var(--dim) }
+@media (min-width:480px){
+  .contact__text{ flex-direction:row; align-items:center; gap:16px }
+  .contact__key{ flex:0 0 88px }   /* fits "WHATSAPP" so all values align */
+}
+.contact__val{ font-size:1.0625rem; color:var(--bone); word-break:break-word }
+a.contact__row{
+  transition:border-color .18s ease, background-color .18s ease, transform .18s ease;
+}
+a.contact__row:hover{ border-color:var(--brass-soft); background:rgba(207,154,88,.06) }
+a.contact__row:hover .contact__val{ color:var(--brass) }
+a.contact__row:active{ transform:translateY(1px) }
+.contact__hint{ color:var(--dim); font-size:.8125rem; margin-top:18px }
+
+/* ── Footer ─────────────────────────────────────────────────────────── */
+.footer{ padding-block:clamp(46px,9vw,64px) clamp(56px,11vw,80px) }
+.footer p{ color:var(--dim); font-size:.8125rem; line-height:1.66; max-width:62ch }
+.footer__sig{ margin-top:22px; color:var(--label) }
+
+/* ── Thai ────────────────────────────────────────────────────────────
+   Thai stacks tone marks above and vowel signs below the baseline, so the
+   English leading collides with itself. It also reads smaller at the same
+   px, hence the nudge up on the display sizes. */
+html[lang="th"] body{ line-height:1.85 }
+html[lang="th"] h1,html[lang="th"] h2,html[lang="th"] h3{ letter-spacing:0 }
+html[lang="th"] .t-display{ font-size:clamp(1.9rem,7vw,3.4rem); line-height:1.38 }
+html[lang="th"] .t-h2{ font-size:clamp(1.6rem,5.4vw,2.4rem); line-height:1.45 }
+html[lang="th"] .t-h3{ line-height:1.5 }
+html[lang="th"] .t-lede{ line-height:1.6 }
+html[lang="th"] .t-micro{ letter-spacing:.06em; line-height:1.5 }
+/* Thai has no inter-word spaces, so the browser may break anywhere without
+   this; it keeps runs of Thai together at natural phrase boundaries. */
+html[lang="th"] .t-body,html[lang="th"] .about__body,
+html[lang="th"] .card__blurb,html[lang="th"] .feature__blurb{ word-break:normal; line-break:normal }
+html[lang="th"] .hero__line .accent{ font-style:normal }
+@media (min-width:768px){ html[lang="th"] .hero__line{ max-width:26ch } }
+
+/* ── Language toggle ─────────────────────────────────────────────────
+   Fixed rather than parked in the hero: a Thai speaker who has scrolled to
+   the price should not have to go back up to switch. */
+.lang{
+  position:fixed; z-index:8; top:12px; right:12px;
+  display:flex; gap:2px; padding:4px;
+  border:1px solid var(--hair); border-radius:999px;
+  background:rgba(12,12,13,.78); backdrop-filter:blur(10px);
+}
+/* Author styles beat the UA sheet's [hidden]{display:none} no matter the
+   specificity, so display:flex above would render an empty pill for anyone
+   without JS — who has no Thai to switch to in the first place. */
+.lang[hidden]{ display:none }
+.lang__btn{
+  appearance:none; -webkit-appearance:none; border:0; cursor:pointer;
+  background:transparent; color:var(--dim);
+  font-family:var(--sans); font-size:.6875rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  min-height:32px; padding:7px 13px; border-radius:999px;
+  transition:color .18s ease, background-color .18s ease;
+}
+.lang__btn:hover{ color:var(--bone) }
+/* doubled up so the active state outranks :hover on specificity rather than
+   on source order */
+.lang__btn[aria-pressed="true"],.lang__btn[aria-pressed="true"]:hover{
+  color:var(--ink); background:var(--brass);
+}
+.lang__btn--th{ letter-spacing:0; font-size:.8125rem }
+
+/* ── Focus, motion, a11y ────────────────────────────────────────────── */
+/* no border-radius here — it would override each element's own corner
+   radius and square off cards/rows on keyboard focus */
+:focus-visible{
+  outline:2px solid var(--brass);
+  outline-offset:3px;
+}
+.skip{
+  position:absolute; width:1px; height:1px; overflow:hidden;
+  clip-path:inset(50%); white-space:nowrap;   /* hidden without forcing overflow */
+  top:8px; left:12px;
+  padding:12px 18px; background:var(--brass); color:var(--ink);
+  font-size:.875rem; font-weight:600; z-index:9;
+}
+.skip:focus{ width:auto; height:auto; clip-path:none; overflow:visible }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important; animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+  html{ scroll-behavior:auto }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#feature" data-i18n="skip">Skip to the Blue Orchid concept</a>
+
+<!-- Rendered by script: without JS there is no Thai to switch to, so a
+     visible toggle would be a dead control. -->
+<div class="lang" id="lang" role="group" aria-label="Language / ภาษา" hidden></div>
+
+<!-- ── Hero ─────────────────────────────────────────────────────────── -->
+
+<div class="nav" id="nav">
+  <a class="nav__name" href="#top" aria-label="Leo Silvagni — home"><span class="nav__name-full" aria-hidden="true">Leo Silvagni</span><span class="nav__name-short" aria-hidden="true">LS</span></a>
+  <nav class="nav__links" aria-label="Sections">
+    <a href="#work"><span class="roll"><span class="roll__a">Work</span><span class="roll__b" aria-hidden="true">Work</span></span></a>
+    <a href="#price"><span class="roll"><span class="roll__a">Prices</span><span class="roll__b" aria-hidden="true">Prices</span></span></a>
+    <a class="nav__cta" href="#contact"><b>Contact<span class="nav__cta-more"> me</span></b><i aria-hidden="true">&rarr;</i></a>
+  </nav>
+  <div class="nav__right"></div>
+</div>
+
+<header class="hero" id="top">
+  <div class="hero__orb" aria-hidden="true"></div>
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__figure" aria-hidden="true"><div class="hero__head"></div></div>
+  <div class="wrap hero__inner">
+    <h1 class="t-display hero__line" data-i18n="hero.line">I help businesses <span class="accent">shape</span> ideas into websites, software and workflows.</h1>
+    <p class="t-lede hero__sub" data-i18n="hero.sub">From idea to visuals to a working tool &mdash; strategy, design and build in one pair of hands.</p>
+    <p class="hero__meta">
+      <span data-i18n="hero.count">Seven sites</span>
+      <i aria-hidden="true"></i>
+      <span data-i18n="hero.place">Krabi, Thailand</span>
+    </p>
+  </div>
+</header>
+
+<main>
+<hr class="rule">
+
+<!-- ── Blue Orchid feature ──────────────────────────────────────────── -->
+<section class="section wrap feature" id="feature" aria-labelledby="feature-name">
+  <div class="feature__head reveal">
+    <h2 class="t-h2 feature__name" id="feature-name">Blue Orchid Beach Krabi</h2>
+    <span class="t-micro tag tag--concept" data-i18n="tag.concept">Concept</span>
+  </div>
+  <p class="t-lede feature__lede reveal" data-i18n="feature.lede">You didn&rsquo;t ask for this. I built it anyway &mdash; because I thought your property deserved better than what&rsquo;s live now.</p>
+
+  <a class="feature__open reveal" href="https://blue-orchid-beach.vercel.app/" target="_blank" rel="noopener noreferrer">
+    <span class="frame">
+      <video class="shot" poster="assets/shots/blue-orchid-beach.jpg"
+             width="1280" height="889"
+             muted loop playsinline preload="none"
+             data-i18n-alt="alt.blueOrchid"
+             aria-label="The Blue Orchid Beach Krabi concept site: a full-bleed beach hero above the room listing."
+             data-reel-desktop="assets/reels/blue-orchid-beach-desktop.mp4"
+             data-reel-mobile="assets/reels/blue-orchid-beach-mobile.mp4"></video>
+    </span>
+    <span class="feature__foot">
+      <span class="feature__blurb" data-i18n="feature.blurb">Four pages &mdash; home, rooms, gallery and booking &mdash; built from the property&rsquo;s own photography.</span>
+      <span class="cta"><span data-i18n="cta.viewLive">View the live site</span> <span class="cta__arrow" aria-hidden="true">&rarr;</span></span>
+    </span>
+  </a>
+</section>
+
+<hr class="rule">
+
+<!-- ── Six-project grid ─────────────────────────────────────────────── -->
+<section class="section wrap" id="work" aria-labelledby="work-head">
+  <div class="grid__head reveal">
+    <h2 class="t-h2" id="work-head" data-i18n="work.head">Six more sites</h2>
+    <p class="t-body" data-i18n="work.sub">Four built for clients. Two built unasked &mdash; <span class="nowrap">like yours.</span></p>
+  </div>
+
+  <div class="grid">
+    <a class="card reveal" href="https://mrgreenll.github.io/zeetar/" target="_blank" rel="noopener noreferrer">
+      <span class="frame">
+        <img class="shot" src="assets/shots/zeetar.jpg" width="1280" height="889" loading="lazy" decoding="async"
+             data-i18n-alt="alt.zeetar" alt="The Zeetar site: the studio name set over a dark, warmly lit salon interior.">
+      </span>
+      <div class="card__body">
+        <h3 class="t-h3 card__title">Zeetar</h3>
+        <span class="t-micro tag tag--concept" data-i18n="tag.concept">Concept</span>
+        <span class="card__blurb" data-i18n="card.zeetar">A bilingual Thai&ndash;English site for a Krabi beauty studio, with an animated WebGL hero layered over the room photography.</span>
+        <span class="card__open"><span data-i18n="card.open">View site</span> <i aria-hidden="true">&rarr;</i></span>
+      </div>
+    </a>
+
+    <a class="card reveal" href="https://www.ppprincess.com/" target="_blank" rel="noopener noreferrer">
+      <span class="frame">
+        <img class="shot" src="assets/shots/pp-princess.jpg" width="1280" height="889" loading="lazy" decoding="async"
+             data-i18n-alt="alt.pp" alt="The PP Princess site: the resort&rsquo;s navigation and a &ldquo;Book a Room&rdquo; button over a full-bleed aerial of the turquoise bay off Phi Phi Island, headlined &ldquo;A location like no other.&rdquo;">
+      </span>
+      <div class="card__body">
+        <h3 class="t-h3 card__title">PP Princess</h3>
+        <span class="t-micro tag" data-i18n="tag.client">Client project</span>
+        <span class="card__blurb" data-i18n="card.pp">The resort&rsquo;s live site &mdash; rooms, dining, island tours and direct booking for a property on Phi Phi Island.</span>
+        <span class="card__open"><span data-i18n="card.open">View site</span> <i aria-hidden="true">&rarr;</i></span>
+      </div>
+    </a>
+
+    <a class="card reveal" href="https://www.nasookresort.com/" target="_blank" rel="noopener noreferrer">
+      <span class="frame">
+        <img class="shot" src="assets/shots/na-sook-wellness.jpg" width="1280" height="889" loading="lazy" decoding="async"
+             data-i18n-alt="alt.naSook" alt="The Na Sook Wellness Resort site: the resort&rsquo;s navigation and a &ldquo;Book Now&rdquo; button beside a portrait gazing up into sunlit jungle canopy, next to copy on the Thai meaning of &ldquo;Na Sook&rdquo; &mdash; mindfulness and happiness.">
+      </span>
+      <div class="card__body">
+        <h3 class="t-h3 card__title">Na Sook Wellness Resort</h3>
+        <span class="t-micro tag" data-i18n="tag.client">Client project</span>
+        <span class="card__blurb" data-i18n="card.naSook">Villas, farm-to-table dining and treatments for the Krabi resort I manage day to day &mdash; live, with direct booking.</span>
+        <span class="card__open"><span data-i18n="card.open">View site</span> <i aria-hidden="true">&rarr;</i></span>
+      </div>
+    </a>
+
+    <a class="card reveal" href="https://cocco-house.vercel.app/" target="_blank" rel="noopener noreferrer">
+      <span class="frame">
+        <img class="shot" src="assets/shots/cocco-house.jpg" width="1280" height="889" loading="lazy" decoding="async"
+             data-i18n-alt="alt.cocco" alt="The Cocco House landing page: thatched garden bungalows among palms at golden hour, below a limestone karst, with the name set large over the lawn.">
+      </span>
+      <div class="card__body">
+        <h3 class="t-h3 card__title">Cocco House</h3>
+        <span class="t-micro tag" data-i18n="tag.client">Client project</span>
+        <span class="card__blurb" data-i18n="card.cocco">A single-page landing site for a garden bungalow stay in Krabi.</span>
+        <span class="card__open"><span data-i18n="card.open">View site</span> <i aria-hidden="true">&rarr;</i></span>
+      </div>
+    </a>
+
+    <a class="card reveal" href="https://mrgreenll.github.io/spirit-mountain/" target="_blank" rel="noopener noreferrer">
+      <span class="frame">
+        <img class="shot" src="assets/shots/spirit-mountain.jpg" width="1280" height="889" loading="lazy" decoding="async"
+             data-i18n-alt="alt.spirit" alt="The Spirit Mountain site, opened by a full-bleed video hero.">
+      </span>
+      <div class="card__body">
+        <h3 class="t-h3 card__title">Spirit Mountain</h3>
+        <span class="t-micro tag" data-i18n="tag.client">Client project</span>
+        <span class="card__blurb" data-i18n="card.spirit">Climbing, wellness and sustainability under one roof, opened by a full-bleed video hero.</span>
+        <span class="card__open"><span data-i18n="card.open">View site</span> <i aria-hidden="true">&rarr;</i></span>
+      </div>
+    </a>
+
+    <a class="card reveal" href="https://mrgreenll.github.io/diamond-beach-nammao/" target="_blank" rel="noopener noreferrer">
+      <span class="frame">
+        <img class="shot" src="assets/shots/diamond-beach-nammao.jpg" width="1280" height="889" loading="lazy" decoding="async"
+             data-i18n-alt="alt.diamond" alt="The Diamond Beach Nammao concept: an aerial of orange-roofed cottages lining the shore beneath forested limestone cliffs, headlined &ldquo;Easy days on the Andaman coast.&rdquo;">
+      </span>
+      <div class="card__body">
+        <h3 class="t-h3 card__title">Diamond Beach Nammao</h3>
+        <span class="t-micro tag tag--concept" data-i18n="tag.concept">Concept</span>
+        <span class="card__blurb" data-i18n="card.diamond">A single-page site plus a complete written brand guideline &mdash; colour, type and voice.</span>
+        <span class="card__open"><span data-i18n="card.open">View site</span> <i aria-hidden="true">&rarr;</i></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ── Marquee ──────────────────────────────────────────────────────────
+     Decorative, so it is aria-hidden and carries no data-i18n — the words
+     are place and trade names that read the same to both audiences, and
+     the EN/TH toggle rewriting this DOM would break the loop's cloning.
+     Static markup, not injected: without JS the band still shows as a
+     quiet typographic strip; script only makes it move. -->
+<div class="mq" aria-hidden="true">
+  <div class="mq__track">
+    <span class="mq__u"><span class="mq__w">Hotels</span><i class="mq__s"></i><span class="mq__w">Resorts</span><i class="mq__s"></i><span class="mq__w mq__w--solid">Krabi</span><i class="mq__s"></i><span class="mq__w">Thailand</span><i class="mq__s"></i></span>
+    <span class="mq__u"><span class="mq__w">Hotels</span><i class="mq__s"></i><span class="mq__w">Resorts</span><i class="mq__s"></i><span class="mq__w mq__w--solid">Krabi</span><i class="mq__s"></i><span class="mq__w">Thailand</span><i class="mq__s"></i></span>
+    <span class="mq__u"><span class="mq__w">Hotels</span><i class="mq__s"></i><span class="mq__w">Resorts</span><i class="mq__s"></i><span class="mq__w mq__w--solid">Krabi</span><i class="mq__s"></i><span class="mq__w">Thailand</span><i class="mq__s"></i></span>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ── About ────────────────────────────────────────────────────────── -->
+<section class="section wrap about" aria-labelledby="about-head">
+  <h2 class="t-micro eyebrow reveal" id="about-head" data-i18n="about.head">Who is building it</h2>
+  <p class="about__body reveal" data-i18n="about.body">I&rsquo;m the acting General Manager at Na Sook Wellness Resort. I work the booking engine, the OTA channels and the guest complaints every day. So when I build a resort website I already know which page the guest actually lands on, which button they can&rsquo;t find, and why the rate on your site doesn&rsquo;t match the rate on Booking.com.</p>
+  <p class="t-lede about__verdict reveal" data-i18n="about.verdict">Most web designers are guessing at that. <span class="accent">I&rsquo;m not.</span></p>
+</section>
+
+<hr class="rule">
+
+<!-- ── Offer ────────────────────────────────────────────────────────── -->
+<section class="section wrap" id="offer" aria-labelledby="offer-head">
+  <div class="offer__panel reveal">
+    <h2 class="t-h2" id="offer-head" data-i18n="offer.head">Your website, maintained. <span class="offer__h2b">Not delivered <span class="nowrap">and abandoned.</span></span></h2>
+    <p class="t-body offer__lead" data-i18n="offer.lead1">Most agencies build your site, invoice you, and vanish. Then your rates change, the low-season promo needs pulling, a new villa opens &mdash; and you&rsquo;re waiting three weeks for a quote to change <span class="nowrap">one paragraph.</span></p>
+    <p class="t-body offer__lead" data-i18n="offer.lead2">I run a resort in Krabi. I know what breaks and when.</p>
+
+    <p class="offer__price" id="price">
+      <span class="offer__per" data-i18n="offer.from">From</span>
+      <span class="offer__amount" data-i18n="offer.amount">900 THB</span>
+      <span class="offer__per" data-i18n="offer.per">/ month &mdash; introductory rate</span>
+    </p>
+    <p class="t-body offer__terms" data-i18n="offer.terms">Includes the site, hosting, and unlimited content changes &mdash; text, photos, rates, seasonal promos. 12-month term, no setup fee. A domain name of your own is charged separately &mdash; I&rsquo;ll register it and look after the renewals so it never lapses.</p>
+    <p class="t-lede offer__close" data-i18n="offer.close">Message me on Line and it&rsquo;s done that day.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ── Contact ──────────────────────────────────────────────────────── -->
+<section class="section wrap contact" id="contact" aria-labelledby="contact-head">
+  <h2 class="t-h2 reveal" id="contact-head">Leo Silvagni</h2>
+  <div class="contact__list reveal">
+    <!-- alt="" on all three: the row already says "Line" / "WhatsApp" /
+         "Email" in text right beside the icon, so a label here would make a
+         screen reader announce every channel twice. -->
+    <a class="contact__row" href="https://line.me/ti/p/~leo.silvagni" target="_blank" rel="noopener noreferrer">
+      <img class="contact__icon" src="assets/icon/line.png" alt="" width="24" height="24">
+      <span class="contact__text">
+        <span class="t-micro contact__key">Line</span>
+        <span class="contact__val">leo.silvagni</span>
+      </span>
+    </a>
+    <a class="contact__row" href="https://wa.me/66631756353" target="_blank" rel="noopener noreferrer">
+      <img class="contact__icon" src="assets/icon/whatsapp.png" alt="" width="24" height="24">
+      <span class="contact__text">
+        <span class="t-micro contact__key">WhatsApp</span>
+        <span class="contact__val">+66 63 175 6353</span>
+      </span>
+    </a>
+    <a class="contact__row" href="mailto:silvagnileo@gmail.com">
+      <img class="contact__icon contact__icon--mail" src="assets/icon/email.png" alt="" width="24" height="24">
+      <span class="contact__text">
+        <span class="t-micro contact__key" data-i18n="contact.email">Email</span>
+        <span class="contact__val">silvagnileo@gmail.com</span>
+      </span>
+    </a>
+  </div>
+  <p class="contact__hint reveal" data-i18n="contact.hint">Line is the fastest way to reach me. I answer the same day.</p>
+</section>
+</main>
+
+<hr class="rule">
+
+<!-- ── Footer ───────────────────────────────────────────────────────── -->
+<footer class="footer wrap">
+  <p data-i18n="footer.disclaimer">Blue Orchid Beach, Zeetar and Diamond Beach Nammao are unsolicited concept work &mdash; designed independently, not commissioned by or affiliated with those businesses.</p>
+  <p class="t-micro footer__sig" data-i18n="footer.sig">Leo Silvagni &middot; Krabi, Thailand</p>
+</footer>
+
+<script>
+/* Spotlight. Only where there is a real cursor to follow — a touch device
+   never fires mouseenter, so the glow would sit invisible forever. */
+(function(){
+  var hero = document.querySelector('.hero');
+  var glow = hero && hero.querySelector('.hero__glow');
+  if (!glow || !window.matchMedia) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var tx = 0, ty = 0, cx = 0, cy = 0, raf = 0, seeded = false, rect = null;
+
+  // getBoundingClientRect() in a mousemove handler forces layout on every
+  // event, so the rect is cached and only invalidated when it can actually
+  // have moved.
+  var invalidate = function(){ rect = null; };
+  addEventListener('scroll', invalidate, { passive: true });
+  addEventListener('resize', invalidate, { passive: true });
+
+  function paint(){
+    glow.style.setProperty('--gx', cx.toFixed(1) + 'px');
+    glow.style.setProperty('--gy', cy.toFixed(1) + 'px');
+  }
+
+  function step(){
+    cx += (tx - cx) * 0.14;
+    cy += (ty - cy) * 0.14;
+    paint();
+    raf = (Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4)
+      ? requestAnimationFrame(step) : 0;
+  }
+
+  hero.addEventListener('mousemove', function(e){
+    if (!rect) rect = hero.getBoundingClientRect();
+    tx = e.clientX - rect.left;
+    ty = e.clientY - rect.top;
+    // Land it where the cursor entered, and paint that position now rather
+    // than waiting on a frame. Easing in from 0,0 would throw a comet across
+    // the masthead, and deferring the very first paint to rAF leaves the glow
+    // parked at its CSS fallback until the compositor gets round to us.
+    if (!seeded) { cx = tx; cy = ty; seeded = true; paint(); }
+    if (!raf) raf = requestAnimationFrame(step);
+  });
+  hero.addEventListener('mouseenter', function(){ hero.classList.add('is-lit'); });
+  hero.addEventListener('mouseleave', function(){ hero.classList.remove('is-lit'); });
+})();
+</script>
+
+<!-- ── Thai ────────────────────────────────────────────────────────────
+     English lives in the markup and is cached on first switch, so the page
+     still reads correctly with JS off — Thai is the enhancement, not the
+     baseline. Every entry carries its English directly above it, because a
+     translation cannot be reviewed without the original beside it. Lines
+     marked VOICE are the ones carrying the pitch; those are the ones worth
+     a native speaker's argument.
+
+     Not translated, by intent: brand and place names, the Line ID, the
+     phone number and the email address. -->
+<script>
+(function(){
+  var TH = {
+    // Leo Silvagni — Websites, software and workflows
+    'title': 'Leo Silvagni — เว็บไซต์ ซอฟต์แวร์ และระบบงาน',
+    // Skip to the Blue Orchid concept
+    'skip': 'ข้ามไปยังงานคอนเซ็ปต์ Blue Orchid',
+
+    // VOICE — I help businesses shape ideas into websites, software and workflows.
+    'hero.line': 'ผมช่วยธุรกิจ<span class="accent">ปั้น</span>ไอเดียให้เป็นเว็บไซต์ ซอฟต์แวร์ และระบบงาน',
+    // From idea to visuals to a working tool — strategy, design and build in
+    // one pair of hands.
+    'hero.sub': 'จากไอเดีย สู่ภาพ สู่เครื่องมือที่ใช้งานได้จริง — คิดกลยุทธ์ ออกแบบ และลงมือสร้าง จบในคนเดียว',
+    // Seven sites
+    'hero.count': '7 เว็บไซต์',
+    // Krabi, Thailand
+    'hero.place': 'กระบี่ ประเทศไทย',
+
+    // Concept  (unsolicited spec work — the footer explains it in full)
+    'tag.concept': 'งานคอนเซ็ปต์',
+    // Client project
+    'tag.client': 'งานลูกค้า',
+
+    // VOICE — You didn't ask for this. I built it anyway — because I thought
+    // your property deserved better than what's live now.
+    'feature.lede': 'คุณไม่ได้ขอ แต่ผมทำให้อยู่ดี — เพราะคิดว่าที่พักของคุณควรได้อะไรที่ดีกว่าเว็บที่ใช้อยู่ตอนนี้',
+    // Four pages — home, rooms, gallery and booking — built from the
+    // property's own photography.
+    'feature.blurb': 'สี่หน้า — หน้าแรก ห้องพัก แกลเลอรี และการจอง — ทำจากภาพถ่ายของที่พักเอง',
+    // View the live site
+    'cta.viewLive': 'เปิดดูเว็บไซต์จริง',
+
+    // Six more sites
+    'work.head': 'อีกหกเว็บไซต์',
+    // Four built for clients. Two built unasked — like yours.
+    'work.sub': 'สี่เว็บทำให้ลูกค้า อีกสองเว็บทำเองโดยไม่มีใครจ้าง — <span class="nowrap">เหมือนของคุณ</span>',
+    // View site
+    'card.open': 'ดูเว็บไซต์',
+
+    // A bilingual Thai–English site for a Krabi beauty studio, with an
+    // animated WebGL hero layered over the room photography.
+    'card.zeetar': 'เว็บไซต์สองภาษา ไทย–อังกฤษ สำหรับร้านเสริมสวยในกระบี่ พร้อมส่วนหัวแบบ WebGL ที่เคลื่อนไหวซ้อนบนภาพถ่ายภายในร้าน',
+    // The resort's live site — rooms, dining, island tours and direct
+    // booking for a property on Phi Phi Island.
+    'card.pp': 'เว็บไซต์จริงของรีสอร์ต — ห้องพัก ร้านอาหาร ทัวร์รอบเกาะ และระบบจองตรง สำหรับที่พักบนเกาะพีพี',
+    // Villas, farm-to-table dining and treatments for the Krabi resort I
+    // manage day to day — live, with direct booking.
+    'card.naSook': 'วิลล่า อาหารจากฟาร์มสู่โต๊ะ และทรีตเมนต์ ของรีสอร์ตในกระบี่ที่ผมดูแลอยู่ทุกวัน — เปิดใช้งานจริง พร้อมระบบจองตรง',
+    // A single-page landing site for a garden bungalow stay in Krabi.
+    'card.cocco': 'เว็บไซต์หน้าเดียวสำหรับที่พักบังกะโลในสวนที่กระบี่',
+    // Climbing, wellness and sustainability under one roof, opened by a
+    // full-bleed video hero.
+    'card.spirit': 'ปีนผา สุขภาพ และความยั่งยืนในที่เดียวกัน เปิดด้วยวิดีโอเต็มหน้าจอ',
+    // A single-page site plus a complete written brand guideline — colour,
+    // type and voice.
+    'card.diamond': 'เว็บไซต์หน้าเดียว พร้อมคู่มือแบรนด์ฉบับเต็ม — สี ตัวอักษร และน้ำเสียงของแบรนด์',
+
+    // Who is building it
+    'about.head': 'คนที่ลงมือทำ',
+    // VOICE — I'm the acting General Manager at Na Sook Wellness Resort. I
+    // work the booking engine, the OTA channels and the guest complaints
+    // every day. So when I build a resort website I already know which page
+    // the guest actually lands on, which button they can't find, and why the
+    // rate on your site doesn't match the rate on Booking.com
+    'about.body': 'ผมเป็นผู้จัดการทั่วไป (รักษาการ) ที่ Na Sook Wellness Resort ดูแลระบบจอง ช่องทาง OTA และเรื่องร้องเรียนของแขกด้วยตัวเองทุกวัน เวลาทำเว็บไซต์รีสอร์ต ผมจึงรู้อยู่แล้วว่าแขกเข้าหน้าไหนจริง ๆ ปุ่มไหนที่หาไม่เจอ และทำไมราคาบนเว็บของคุณถึงไม่ตรงกับราคาบน Booking.com',
+    // VOICE — Most web designers are guessing at that. I'm not.
+    'about.verdict': 'นักออกแบบเว็บส่วนใหญ่ได้แต่เดา <span class="accent">ผมไม่ต้องเดา</span>',
+
+    // VOICE — Your website, maintained. Not delivered and abandoned.
+    'offer.head': 'เว็บไซต์ที่มีคนดูแลต่อ <span class="offer__h2b">ไม่ใช่ส่งมอบ<span class="nowrap">แล้วหายไป</span></span>',
+    // Most agencies build your site, invoice you, and vanish. Then your
+    // rates change, the low-season promo needs pulling, a new villa opens —
+    // and you're waiting three weeks for a quote to change one paragraph.
+    'offer.lead1': 'เอเจนซีส่วนใหญ่ทำเว็บให้ วางบิล แล้วก็หายไป พอราคาเปลี่ยน ต้องเอาโปรโมชันโลว์ซีซันออก หรือมีวิลล่าใหม่เปิด คุณกลับต้องรอใบเสนอราคาสามสัปดาห์ เพียงเพื่อแก้<span class="nowrap">ข้อความย่อหน้าเดียว</span>',
+    // VOICE — I run a resort in Krabi. I know what breaks and when.
+    'offer.lead2': 'ผมบริหารรีสอร์ตอยู่ที่กระบี่ ผมรู้ว่าอะไรจะพัง และพังตอนไหน',
+    // From
+    'offer.from': 'เริ่มต้น',
+    // 900 THB
+    'offer.amount': '900 บาท',
+    // / month — introductory rate
+    'offer.per': '/ เดือน — ราคาเปิดตัว',
+    // Includes the site, hosting, and unlimited content changes — text,
+    // photos, rates, seasonal promos. 12-month term, no setup fee. A domain
+    // name of your own is charged separately — I'll register it and look
+    // after the renewals so it never lapses.
+    'offer.terms': 'รวมตัวเว็บไซต์ โฮสติ้ง และการแก้ไขเนื้อหาแบบไม่จำกัด ทั้งข้อความ รูปภาพ ราคา และโปรโมชันตามฤดูกาล สัญญา 12 เดือน ไม่มีค่าติดตั้ง ส่วนชื่อโดเมนของคุณเองคิดค่าใช้จ่ายแยกต่างหาก — ผมจดให้และดูแลต่ออายุให้เอง จะได้ไม่ขาดอายุ',
+    // VOICE — Message me on Line and it's done that day.
+    'offer.close': 'ทักมาทางไลน์ แล้วจัดการให้เสร็จภายในวันนั้น',
+
+    // Email
+    'contact.email': 'อีเมล',
+    // Line is the fastest way to reach me. I answer the same day.
+    'contact.hint': 'ไลน์เป็นช่องทางที่เร็วที่สุด ตอบกลับภายในวันเดียวกัน',
+
+    // Blue Orchid Beach, Zeetar and Diamond Beach Nammao are unsolicited
+    // concept work — designed independently, not commissioned by or
+    // affiliated with those businesses.
+    'footer.disclaimer': 'Blue Orchid Beach, Zeetar และ Diamond Beach Nammao เป็นงานคอนเซ็ปต์ที่ทำขึ้นเอง — ออกแบบขึ้นโดยอิสระ ไม่ได้รับการว่าจ้าง และไม่มีส่วนเกี่ยวข้องกับธุรกิจดังกล่าว',
+    // Leo Silvagni · Krabi, Thailand
+    'footer.sig': 'Leo Silvagni &middot; กระบี่ ประเทศไทย',
+
+    // --- image descriptions (screen readers only) ---
+    'alt.blueOrchid': 'เว็บไซต์คอนเซ็ปต์ Blue Orchid Beach Krabi: ภาพชายหาดเต็มความกว้างอยู่เหนือรายการห้องพัก',
+    'alt.zeetar': 'เว็บไซต์ Zeetar: ชื่อร้านวางอยู่บนภาพภายในร้านเสริมสวยโทนมืดที่มีแสงอบอุ่น',
+    'alt.pp': 'เว็บไซต์ PP Princess: เมนูของรีสอร์ตและปุ่ม “Book a Room” บนภาพมุมสูงของอ่าวสีเทอร์ควอยซ์นอกเกาะพีพี พร้อมพาดหัวว่า “A location like no other.”',
+    'alt.naSook': 'เว็บไซต์ Na Sook Wellness Resort: เมนูของรีสอร์ตและปุ่ม “Book Now” ข้างภาพคนกำลังมองขึ้นไปบนเรือนยอดไม้ที่มีแสงแดดส่อง ถัดจากข้อความอธิบายความหมายของคำว่า “ณ สุข” — สติและความสุข',
+    'alt.cocco': 'หน้าแรกของ Cocco House: บังกะโลหลังคาจากในสวนปาล์มยามแดดร่ม ใต้เขาหินปูน พร้อมชื่อตัวใหญ่วางอยู่บนสนามหญ้า',
+    'alt.spirit': 'เว็บไซต์ Spirit Mountain เปิดด้วยวิดีโอเต็มหน้าจอ',
+    'alt.diamond': 'งานคอนเซ็ปต์ Diamond Beach Nammao: ภาพมุมสูงของกระท่อมหลังคาสีส้มเรียงรายริมชายฝั่ง ใต้หน้าผาหินปูนที่ปกคลุมด้วยป่า พร้อมพาดหัวว่า “Easy days on the Andaman coast.”'
+  };
+
+  var root = document.documentElement;
+  var box = document.getElementById('lang');
+  if (!box) return;
+
+  var nodes = [].slice.call(document.querySelectorAll('[data-i18n]'));
+  var alts  = [].slice.call(document.querySelectorAll('[data-i18n-alt]'));
+  var EN = { title: document.title };
+  nodes.forEach(function(el, i){ EN['n' + i] = el.innerHTML; });
+  // The video element has no alt attribute; its accessible name is aria-label.
+  // Same dictionary key either way, so check.mjs's coverage checks still hold.
+  function labelAttr(el){ return el.tagName === 'VIDEO' ? 'aria-label' : 'alt'; }
+  alts.forEach(function(el, i){ EN['a' + i] = el.getAttribute(labelAttr(el)); });
+
+  function apply(lang){
+    root.setAttribute('lang', lang);
+    var th = lang === 'th';
+    document.title = (th && TH.title) || EN.title;
+    nodes.forEach(function(el, i){
+      var v = th && TH[el.getAttribute('data-i18n')];
+      el.innerHTML = v || EN['n' + i];
+    });
+    alts.forEach(function(el, i){
+      var v = th && TH[el.getAttribute('data-i18n-alt')];
+      el.setAttribute(labelAttr(el), v || EN['a' + i]);
+    });
+    [].forEach.call(box.children, function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
+    });
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+
+  box.innerHTML =
+    '<button class="lang__btn" type="button" data-lang="en" lang="en">EN</button>' +
+    '<button class="lang__btn lang__btn--th" type="button" data-lang="th" lang="th">ไทย</button>';
+  box.hidden = false;
+  box.addEventListener('click', function(e){
+    var b = e.target.closest('[data-lang]');
+    if (b) apply(b.getAttribute('data-lang'));
+  });
+
+  var saved;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  // A Thai-language phone opens on Thai; everyone else gets English.
+  apply(saved || (/^th\b/i.test(navigator.language || '') ? 'th' : 'en'));
+})();
+</script>
+
+<!-- ── Type ───────────────────────────────────────────────────────────── -->
+<style>
+/* Both tokens now point at the same sans, the way the reference site does
+   (--font-display and --font-body both resolve to --font-sans there). The
+   token is still named --serif because every rule in the shipped sheet asks
+   for it by that name; renaming it would touch a hundred declarations to say
+   the same thing. Thai keeps IBM Plex Sans Thai — Plus Jakarta Sans has no
+   Thai glyphs at all. */
+:root{
+  --serif:"Plus Jakarta Sans","IBM Plex Sans Thai",system-ui,-apple-system,sans-serif;
+  --sans: "Plus Jakarta Sans","IBM Plex Sans Thai",system-ui,-apple-system,sans-serif;
+}
+/* A high-contrast display serif carries itself at large sizes; a grotesque
+   needs the tracking pulled in or it reads loose and wide. -.03em is the
+   reference's own --tracking-tight. */
+h1,h2,h3{ font-weight:500; letter-spacing:-.03em }
+.t-display{ letter-spacing:-.035em; line-height:1.05 }
+.t-h2{ letter-spacing:-.03em }
+.t-h3,.t-lede{ letter-spacing:-.02em }
+.offer__amount{ font-weight:600; letter-spacing:-.03em }
+html[lang="th"] h1,html[lang="th"] h2,html[lang="th"] h3{ letter-spacing:0 }
+</style>
+
+<!-- ── Navigation ─────────────────────────────────────────────────────── -->
+<style>
+/* A centred capsule the whole way down, not a full-width bar: invisible at
+   the top, then on scroll it takes a background and contracts. Width is the
+   animated property, which is what reads as "collapsing into a box". */
+.nav{
+  --nav-w:940px;
+  position:fixed; top:20px; left:50%; z-index:20;
+  transform:translate(-50%,0);
+  width:min(var(--nav-w), calc(100% - 40px));
+  height:64px; padding:0 10px 0 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:clamp(10px,2vw,24px);
+  border:1px solid transparent; border-radius:9999px;
+  background:transparent;
+  transition:width .6s cubic-bezier(.16,1,.3,1),
+             padding .6s cubic-bezier(.16,1,.3,1),
+             background-color .45s ease, border-color .45s ease,
+             box-shadow .45s ease, backdrop-filter .45s ease;
+}
+.nav.is-stuck{
+  --nav-w:780px;
+  background:rgba(18,18,21,.72);
+  -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
+  border-color:var(--hair-strong);
+  box-shadow:0 10px 34px rgba(0,0,0,.42);
+  padding-right:8px;
+}
+
+/* ── Home / wordmark ───────────────────────────────────────────────── */
+.nav__name{
+  display:inline-flex; align-items:baseline;
+  font-family:var(--sans); font-size:1rem; font-weight:700;
+  letter-spacing:.055em; color:var(--bone); white-space:nowrap;
+  transition:color .18s ease;
+}
+.nav__name:hover{ color:var(--brass) }
+.nav__name-full,.nav__name-short{
+  display:inline-block; overflow:hidden; white-space:nowrap;
+  transition:max-width .55s cubic-bezier(.16,1,.3,1), opacity .3s ease;
+}
+.nav__name-full { max-width:16ch; opacity:1 }
+.nav__name-short{ max-width:0;    opacity:0 }
+.nav.is-stuck .nav__name-full { max-width:0; opacity:0 }
+.nav.is-stuck .nav__name-short{ max-width:4ch; opacity:1 }
+
+.nav__links{ display:flex; align-items:center; gap:clamp(16px,2.4vw,30px) }
+.nav__links > a{
+  font-family:var(--sans); font-size:1rem; font-weight:500;
+  letter-spacing:-.005em; color:var(--dim);
+  transition:color .18s ease;
+}
+
+/* word rolls out, its copy rolls in — 105% so a descender never flashes */
+.roll{ display:block; position:relative; overflow:hidden; line-height:1.35 }
+.roll__a,.roll__b{ display:block; transition:transform .45s cubic-bezier(.16,1,.3,1) }
+.roll__b{ position:absolute; left:0; top:0; width:100%;
+  transform:translateY(105%); color:var(--brass) }
+.nav__links > a:hover .roll__a{ transform:translateY(-105%) }
+.nav__links > a:hover .roll__b{ transform:translateY(0) }
+
+/* ── Contact: the gold arrives as a sweep ──────────────────────────── */
+.nav__links > a.nav__cta{
+  position:relative; isolation:isolate; overflow:hidden;
+  display:inline-flex; align-items:center; gap:.5em;
+  min-height:42px; padding:11px 20px; border-radius:9999px;
+  background:var(--ink); color:var(--bone);
+  border:1px solid var(--hair-strong);
+  font-size:.9375rem; font-weight:600; letter-spacing:-.005em; white-space:nowrap;
+  margin-left:clamp(6px,1.2vw,16px);
+  transition:color .28s ease .14s, border-color .3s ease .16s, transform .18s ease;
+}
+/* The fill sits at z-index 0 with the label lifted above it. A negative
+   z-index has to out-paint the button's own background and quietly did not. */
+.nav__cta::before{
+  content:""; position:absolute; inset:0; z-index:0;
+  background:var(--brass);
+  transform:scaleX(0); transform-origin:0 50%;
+  transition:transform .5s cubic-bezier(.62,0,.3,1);
+}
+.nav__cta b,.nav__cta i{ position:relative; z-index:1 }
+.nav__cta b{ font-weight:inherit }
+.nav__cta i{ font-style:normal; color:var(--brass);
+  transition:transform .22s cubic-bezier(.2,.7,.3,1), color .28s ease .14s }
+.nav__links > a.nav__cta:hover{ color:var(--ink); border-color:var(--brass) }
+.nav__cta:hover::before{ transform:scaleX(1) }
+.nav__cta:hover i{ color:var(--ink); transform:translateX(3px) }
+.nav__cta:active{ transform:translateY(1px) }
+
+.nav__right{ display:flex; align-items:center; gap:4px }
+.nav .lang{
+  position:static; top:auto; right:auto;
+  background:transparent; border:0; padding:0; gap:2px;
+  -webkit-backdrop-filter:none; backdrop-filter:none;
+}
+.nav .lang__btn{
+  min-height:0; padding:4px; border-radius:50%;
+  opacity:.62; transition:opacity .18s ease, transform .18s ease;
+}
+.nav .lang__btn:hover{ opacity:.85; background:transparent }
+.nav .lang__btn[aria-pressed="true"],
+.nav .lang__btn[aria-pressed="true"]:hover{ opacity:1; background:transparent }
+.lang__flag{ display:block; width:23px; height:23px; border-radius:50%; object-fit:cover }
+.nav .lang__btn[aria-pressed="true"] .lang__flag{
+  box-shadow:0 0 0 2px var(--ink), 0 0 0 3px var(--brass);
+}
+.nav .lang__btn:active{ transform:translateY(1px) }
+
+#work,#contact,#feature{ scroll-margin-top:110px }
+
+@media (max-width:719px){
+  .nav{
+    --nav-w:100%;
+    top:12px; height:58px; padding:0 8px 0 16px;
+    width:calc(100% - 24px);
+  }
+  .nav.is-stuck{ --nav-w:100%; padding-right:8px }
+  .nav__links > a:not(.nav__cta){ display:none }
+  .nav__links{ order:3; margin-left:0 }
+  .nav__right{ order:2; margin-left:auto }
+  .nav__name{ font-size:.9375rem; letter-spacing:.04em }
+  .nav__links > a.nav__cta{ padding:9px 15px; font-size:.875rem; min-height:38px }
+  .nav__cta-more{ display:none }
+  .lang__flag{ width:21px; height:21px }
+}
+
+/* the capsule is centred by transform, so the entrance has to ride the same
+   one or it snaps to the left edge on load */
+.js .nav{ opacity:0; transform:translate(-50%,-12px) }
+.js .nav.is-on{
+  opacity:1; transform:translate(-50%,0);
+  transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1),
+             width .6s cubic-bezier(.16,1,.3,1),
+             background-color .45s ease, border-color .45s ease,
+             box-shadow .45s ease, backdrop-filter .45s ease;
+}
+@media (prefers-reduced-motion:reduce){
+  .js .nav{ opacity:1; transform:translate(-50%,0) }
+  .roll__a,.roll__b,.nav__cta::before,.nav__name-full,.nav__name-short{ transition:none }
+}
+</style>
+<script>
+(function(){
+  var nav = document.querySelector('.nav');
+  if (!nav) return;
+  var lang = document.getElementById('lang');
+  var slot = nav.querySelector('.nav__right');
+  if (lang && slot){
+    slot.appendChild(lang);
+    var FLAG = { en: 'assets/icon/lang-en.png', th: 'assets/icon/lang-th.png' };
+    var NAME = { en: 'English', th: 'ไทย' };
+    [].forEach.call(lang.querySelectorAll('.lang__btn'), function(b){
+      var code = b.getAttribute('data-lang');
+      if (!FLAG[code]) return;
+      b.innerHTML = '<img class="lang__flag" src="' + FLAG[code] + '" alt="" width="23" height="23">';
+      b.setAttribute('aria-label', NAME[code]);
+      b.setAttribute('title', NAME[code]);
+    });
+  }
+  var stick = function(){ nav.classList.toggle('is-stuck', pageYOffset > 40); };
+  addEventListener('scroll', stick, { passive:true });
+  stick();
+})();
+</script>
+
+<!-- ── Hero: one full screen ──────────────────────────────────────────── -->
+<style>
+/* svh — the smallest viewport height — not vh (ignores mobile chrome, so the
+   next section peeks anyway) and not dvh (resizes as the address bar hides,
+   dragging the masthead mid-scroll). */
+.hero{
+  min-height:100vh;
+  min-height:100svh;
+  display:flex; align-items:center;
+  padding-block:calc(84px + clamp(16px,3vw,32px)) clamp(48px,9vw,80px);
+}
+.hero__inner{ width:100% }
+@media (min-width:900px){ .hero__orb{ top:62% } }   /* sits low, under the sub-hero's shoulder */
+@media (max-width:719px){ .hero{ padding-block:calc(70px + 16px) clamp(40px,8vw,64px) } }
+@media (max-width:899px){
+  /* On a phone the orb sits behind the masthead by design. Its rings are a
+     hard edge though, and behind the particle phrase one of them reads as a
+     bite taken out of the words. Dropped to a glow; the shape goes, the
+     warmth stays. */
+  .hero__orb{ opacity:.42 }
+}
+</style>
+<!-- ── Motion ──────────────────────────────────────────────────────────
+     Masked line reveals for the display type, staggered fade-ups for
+     everything else, a wipe on each screenshot, and the particle headline. -->
+<style>
+/* 1 — masked line reveal: each line rides up out of its own clipped box */
+.ln{ display:block; overflow:hidden; padding-bottom:.06em }
+.ln-i{
+  display:block; transform:translateY(115%);
+  transition:transform 1.05s cubic-bezier(.16,1,.3,1);
+  transition-delay:calc(var(--i,0) * 85ms);
+  will-change:transform;
+}
+.is-in .ln-i{ transform:translateY(0) }
+/* Words must measure as inline boxes or .accent — display:block in the
+   shipped sheet — makes every one of its words its own line. The block break
+   it really wants is carried explicitly by .mo-brk instead. */
+/* Tripled so it outranks .hero__line .accent (0,2,0) on specificity rather
+   than on source order. */
+.mo-w.mo-w.mo-w{ display:inline-block }
+
+/* 2 — staggered fade-up for everything that is not display type */
+.mo-up{
+  opacity:0; transform:translateY(24px);
+  transition:opacity .9s cubic-bezier(.16,1,.3,1),
+             transform .9s cubic-bezier(.16,1,.3,1);
+  transition-delay:calc(var(--i,0) * 80ms);
+}
+.mo-up.is-in{ opacity:1; transform:none }
+
+/* 3 — screenshots wipe in from the left rather than fading */
+.mo-wipe{
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path 1.2s cubic-bezier(.16,1,.3,1);
+  transition-delay:calc(var(--i,0) * 80ms);
+}
+.mo-wipe.is-in{ clip-path:inset(0 0 0 0) }
+
+/* 4 — cards lean toward the cursor */
+@media (hover:hover) and (pointer:fine){
+  .card.mo-tilt{ transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .22s ease }
+  .card.mo-tilt.is-tilting{ transition:transform .08s linear, border-color .22s ease }
+}
+
+/* 5 — load curtain */
+.mo-curtain{
+  position:fixed; inset:0; z-index:99; background:var(--ink);
+  pointer-events:none; transform:translateY(0);
+  transition:transform 1.05s cubic-bezier(.76,0,.24,1);
+}
+.mo-curtain.is-up{ transform:translateY(-100%) }
+.mo-curtain::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background:linear-gradient(90deg,transparent,var(--brass),transparent);
+  opacity:.5;
+}
+
+/* 5b — particle headline */
+.mo-pt{ position:relative; color:transparent }
+/* Each word span carries .accent, which sets its own colour and so beats a
+   colour set on the line. The words have to be silenced individually or the
+   real phrase shows through under the dots. Transparent rather than hidden:
+   the text stays selectable and still reaches a screen reader. */
+.mo-pt .mo-w{ color:transparent }
+.ln.mo-pt-line{ overflow:visible }
+
+/* 6 — scroll progress hairline */
+.mo-prog{
+  position:fixed; top:0; left:0; height:2px; z-index:97;
+  width:100%; transform:scaleX(0); transform-origin:0 50%;
+  background:var(--brass); opacity:.55; pointer-events:none;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .ln-i,.mo-up,.mo-wipe{
+    transition:none!important; transform:none!important;
+    opacity:1!important; clip-path:none!important;
+  }
+  .mo-curtain,.mo-prog{ display:none }
+}
+</style>
+
+<script>
+(function(){
+  var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FINE    = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ── line splitting ──────────────────────────────────────────────────
+     Words are wrapped first and measured with the original markup still
+     intact, so the grouping reflects the real line boxes — including the
+     block-level .accent span. Only then is the content rebuilt as lines. */
+  var ORIG = new WeakMap();
+  var ptDestroys = [];           // tears down the current particle fields
+
+  function wrapWords(node, cls, out){
+    if (node.nodeType === 3){
+      if (!node.textContent.trim()) return;
+      var frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(function(p){
+        if (!p) return;
+        if (/^\s+$/.test(p)){ frag.appendChild(document.createTextNode(' ')); return; }
+        var s = document.createElement('span');
+        s.className = 'mo-w' + (cls ? ' ' + cls : '');
+        s.textContent = p;
+        frag.appendChild(s);
+        out.push(s);
+      });
+      node.parentNode.replaceChild(frag, node);
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    var own = typeof node.className === 'string' ? node.className : '';
+    var next = ((cls ? cls + ' ' : '') + own).trim();
+    // A block-level inline child (.accent) starts a real line. Words measure
+    // inline, so that break has to be remembered rather than measured.
+    var isBlock = /^(block|flow-root|list-item)$/.test(getComputedStyle(node).display);
+    var before = out.length;
+    [].slice.call(node.childNodes).forEach(function(k){ wrapWords(k, next, out); });
+    if (isBlock && out.length > before){
+      out[before].__brk = true;
+    }
+  }
+
+  function splitLines(el){
+    if (!ORIG.has(el)) ORIG.set(el, el.innerHTML);
+    el.innerHTML = ORIG.get(el);
+    var words = [];
+    wrapWords(el, '', words);
+    if (!words.length) return;
+
+    var lines = [], cur = null, prevTop = null;
+    words.forEach(function(w){
+      var top = w.offsetTop;
+      if (prevTop === null || w.__brk || Math.abs(top - prevTop) > 2){
+        cur = []; lines.push(cur); prevTop = top;
+      }
+      cur.push(w);
+    });
+
+    el.innerHTML = lines.map(function(ws){
+      return '<span class="ln"><span class="ln-i">' +
+        ws.map(function(w){ return w.outerHTML; }).join(' ') + '</span></span>';
+    }).join('');
+    [].forEach.call(el.querySelectorAll('.ln-i'), function(n, i){ n.style.setProperty('--i', i); });
+    el.classList.add('mo-lines');
+  }
+
+  /* .feature__lede is deliberately absent: it belongs to the scroll-scrub
+     layer below, which is its reveal — a masked line entrance on top of a
+     word-by-word fill would play the same trick twice. */
+  var LINE_SEL = '.hero__line, #feature-name, #work-head,' +
+                 '.about__verdict, .offer__panel h2, #contact-head, .offer__close';
+  if (!REDUCED) [].slice.call(document.querySelectorAll(LINE_SEL)).forEach(splitLines);
+
+  // The EN/TH toggle rewrites [data-i18n] innerHTML, which throws the split
+  // markup away. Re-split from whatever it just wrote, and show it at once —
+  // the reader is already looking at these lines, so they must not re-animate.
+  function resplitAll(){
+    [].slice.call(document.querySelectorAll(LINE_SEL)).forEach(function(el){
+      ORIG.delete(el);
+      splitLines(el);
+      el.classList.add('is-in');
+    });
+    initParticles(true);         // the canvas went with the old markup
+  }
+  var langBox = document.getElementById('lang');
+  if (langBox && !REDUCED){
+    langBox.addEventListener('click', function(){ setTimeout(resplitAll, 0); });
+  }
+  // Lines are measured, so a width change invalidates every one of them.
+  var rt;
+  addEventListener('resize', function(){
+    if (REDUCED) return;
+    clearTimeout(rt); rt = setTimeout(resplitAll, 180);
+  });
+
+  /* ── fade-up + wipe targets ─────────────────────────────────────────── */
+  function mark(sel, cls, stagger){
+    [].slice.call(document.querySelectorAll(sel)).forEach(function(el, i){
+      if (el.closest('.mo-lines')) return;
+      el.classList.add(cls);
+      if (stagger) el.style.setProperty('--i', i % stagger);
+    });
+  }
+  if (!REDUCED){
+    mark('.hero .eyebrow, .hero__sub, .hero__meta, .hero__actions', 'mo-up', 3);
+    /* .about__body and .offer__lead scrub word-by-word with the scroll
+       instead of fading up — they are claimed by the scroll layer below. */
+    mark('.feature__foot, .grid__head p,' +
+         '.offer__price, .offer__terms, .contact__hint, .footer__sig', 'mo-up', 1);
+    mark('.card__body', 'mo-up', 1);
+    mark('.contact__row', 'mo-up', 3);
+    mark('.frame', 'mo-wipe', 2);
+  }
+
+  /* ── one observer drives every kind of reveal ───────────────────────── */
+  var watch = [].slice.call(document.querySelectorAll('.mo-lines, .mo-up, .mo-wipe'));
+  if (REDUCED || !('IntersectionObserver' in window)){
+    watch.forEach(function(el){ el.classList.add('is-in'); });
+  } else {
+    /* A .mo-wipe frame is clipped to zero width by its own clip-path, and
+       the intersection is computed on the clipped box — so observed
+       directly its ratio is 0 and threshold .05 never fires; every wipe
+       then waited for the 6s failsafe, and a fast scroller met an empty
+       mount. Same trap the reel loader documents for the video inside
+       this frame; same cure: watch the unclipped parent and resolve the
+       frame back out of it. */
+    var HANDLE = new WeakMap();
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        (HANDLE.get(e.target) || e.target).classList.add('is-in');
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    watch.forEach(function(el){
+      if (el.closest('.hero')) return;
+      var h = el.classList.contains('mo-wipe') && el.parentElement ? el.parentElement : el;
+      HANDLE.set(h, el);
+      io.observe(h);
+    });
+    // Failsafe. Everything above is hidden by a class this script added, so a
+    // silent failure here does not degrade to a plain page — it degrades to a
+    // blank one. After 6s, show whatever is still waiting, whatever the cause.
+    setTimeout(function(){
+      watch.forEach(function(el){ el.classList.add('is-in'); });
+    }, 6000);
+  }
+
+  /* ── intro curtain, then the masthead rises ─────────────────────────── */
+  function revealHero(){
+    [].slice.call(document.querySelectorAll('.hero .mo-lines, .hero .mo-up'))
+      .forEach(function(el){ el.classList.add('is-in'); });
+    var nav = document.querySelector('.nav');
+    if (nav) nav.classList.add('is-on');
+  }
+  var seen = false;
+  try { seen = sessionStorage.getItem('mo-seen') === '1'; } catch(e){}
+  if (REDUCED || seen){
+    revealHero();
+  } else {
+    var curtain = document.createElement('div');
+    curtain.className = 'mo-curtain';
+    curtain.setAttribute('aria-hidden','true');
+    document.body.appendChild(curtain);
+    requestAnimationFrame(function(){
+      setTimeout(function(){
+        curtain.classList.add('is-up');
+        revealHero();
+        setTimeout(function(){ if (curtain.parentNode) curtain.remove(); }, 1300);
+      }, 260);
+    });
+    try { sessionStorage.setItem('mo-seen','1'); } catch(e){}
+  }
+
+  /* ── scroll progress hairline ───────────────────────────────────────── */
+  if (!REDUCED){
+    var prog = document.createElement('div');
+    prog.className = 'mo-prog';
+    prog.setAttribute('aria-hidden','true');
+    document.body.appendChild(prog);
+    var paintProg = function(){
+      var max = document.documentElement.scrollHeight - innerHeight;
+      prog.style.transform = 'scaleX(' + (max > 0 ? pageYOffset / max : 0) + ')';
+    };
+    addEventListener('scroll', paintProg, { passive:true });
+    addEventListener('resize', paintProg);
+    paintProg();
+  }
+
+  /* ── card tilt ──────────────────────────────────────────────────────── */
+  if (FINE && !REDUCED){
+    [].slice.call(document.querySelectorAll('.card')).forEach(function(card){
+      card.classList.add('mo-tilt');
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - .5;
+        var py = (e.clientY - r.top) / r.height - .5;
+        card.classList.add('is-tilting');
+        card.style.transform =
+          'perspective(900px) rotateX(' + (-py * 4).toFixed(2) + 'deg) rotateY(' +
+          (px * 5).toFixed(2) + 'deg) translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function(){
+        card.classList.remove('is-tilting');
+        card.style.transform = '';
+      });
+    });
+  }
+
+
+  /* ── particle headline ───────────────────────────────────────────────
+     The accent line is rasterised offscreen, its opaque pixels sampled into
+     particles, and the real text turned transparent — it stays in the DOM so
+     it is still selectable, searchable and read aloud. Canvas 2D rather than
+     three.js: this is one short phrase, and the shipped page carries no
+     external scripts by design.
+
+     Particles fly in from scattered positions when the line reveals, then
+     spring home. That part needs no cursor, so a phone sees it too; hover and
+     touch merely push them around afterwards. */
+  function particleLine(host){
+    if (!host || host.__pt) return;
+    var text = host.textContent.replace(/\s+/g, ' ').trim();
+    if (!text) return;
+
+    // Read the type off a word, not off the line: italic, weight and colour
+    // all come from .accent on the word spans, and the line knows none of it.
+    var cs   = getComputedStyle(host.querySelector('.mo-w') || host);
+    var fs   = parseFloat(cs.fontSize) || 16;
+    var PAD  = Math.round(fs * 0.7);          // bleed so scattered dots survive
+    var dpr  = Math.min(devicePixelRatio || 1, 2);
+    var font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+
+    // measure, then size the canvas to the glyphs rather than the line box
+    var probe = document.createElement('canvas').getContext('2d');
+    probe.font = font;
+    // .t-display tracks in tight; without this the field renders wider than
+    // the text it replaces and drifts out of the column
+    var tracking = cs.letterSpacing && cs.letterSpacing !== 'normal' ? cs.letterSpacing : null;
+    if (tracking && 'letterSpacing' in probe) probe.letterSpacing = tracking;
+    var m    = probe.measureText(text);
+    var asc  = m.actualBoundingBoxAscent  || fs * 0.8;
+    var desc = m.actualBoundingBoxDescent || fs * 0.2;
+    var tw   = m.width;
+    var W = Math.ceil(tw + PAD * 2);
+    var H = Math.ceil(asc + desc + PAD * 2);
+    if (!(W > 0 && H > 0)) return;
+
+    var off  = document.createElement('canvas');
+    off.width = W * dpr; off.height = H * dpr;
+    var octx = off.getContext('2d');
+    octx.scale(dpr, dpr);
+    octx.font = font;
+    if (tracking && 'letterSpacing' in octx) octx.letterSpacing = tracking;
+    octx.textBaseline = 'alphabetic';
+    octx.fillStyle = '#fff';
+    octx.fillText(text, PAD, PAD + asc);
+
+    var data;
+    try { data = octx.getImageData(0, 0, off.width, off.height).data; }
+    catch (e) { return; }                     // tainted canvas — keep the text
+
+    // Pitch is set in device pixels so density holds across displays. Too
+    // coarse and an italic serif stops reading as words at all — its thin
+    // strokes simply fall between samples.
+    var step = Math.max(2, Math.round(dpr * 1.6));
+    var pts = [];
+    for (var y = 0; y < off.height; y += step){
+      for (var x = 0; x < off.width; x += step){
+        if (data[(y * off.width + x) * 4 + 3] > 128){
+          pts.push({ hx: x / dpr, hy: y / dpr, x: 0, y: 0, vx: 0, vy: 0,
+                     ph: Math.random() * 6.283, am: 0.5 + Math.random() });
+        }
+      }
+    }
+    if (pts.length < 12) return;
+
+    var cv = document.createElement('canvas');
+    cv.width = W * dpr; cv.height = H * dpr;
+    cv.setAttribute('aria-hidden', 'true');
+    var ctx = cv.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    /* Anchored to the text baseline, not centred in the host: a zero-size
+       inline-block rests its bottom edge exactly on the baseline, and the
+       rasterised glyphs sit `asc` above their own. Centring only ever
+       approximated this, and once the host became a mid-sentence word the
+       error read as "shape" floating off the line. */
+    host.classList.add('mo-pt');           /* position:relative, before measuring */
+    var anchor = document.createElement('span');
+    anchor.style.cssText = 'display:inline-block;width:0;height:0';
+    host.appendChild(anchor);
+    var baseY = anchor.offsetTop;
+    host.removeChild(anchor);
+    cv.style.cssText = 'position:absolute;pointer-events:none;left:' + (-PAD) +
+      'px;top:' + Math.round(baseY - asc - PAD) +
+      'px;width:' + W + 'px;height:' + H + 'px';
+    host.appendChild(cv);
+    var lineBox = host.closest('.ln');
+    if (lineBox) lineBox.classList.add('mo-pt-line');
+    host.__pt = true;
+
+    var dot   = Math.max(1, step / dpr);   // pitch-sized, so settled dots close up
+    var brass = cs.color && cs.color !== 'rgba(0, 0, 0, 0)' ? cs.color : '#cf9a58';
+
+    var mx = -9999, my = -9999, raf = 0, running = false;
+    var tabOn = true, inView = true, t = 0;
+    var R = fs * 1.5, R2 = R * R;
+    var WANDER = Math.max(0.6, fs * 0.018);   // ~1px at display size
+
+    function tick(){
+      t += 0.016;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = brass;
+      for (var i = 0; i < pts.length; i++){
+        var p = pts[i];
+        var dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+        if (d2 < R2 && d2 > 0.01){
+          var d = Math.sqrt(d2), f = (1 - d / R) * 2.6;
+          p.vx += (dx / d) * f; p.vy += (dy / d) * f;
+        }
+        // The spring targets the true home. Driving it with a moving target
+        // fed the wander straight into an underdamped spring, which amplified
+        // a 3px wobble into an unreadable cloud. The shimmer is added at draw
+        // time instead, so its amplitude is exactly what it says it is.
+        p.vx += (p.hx - p.x) * 0.055;
+        p.vy += (p.hy - p.y) * 0.055;
+        p.vx *= 0.80; p.vy *= 0.80;
+        p.x += p.vx; p.y += p.vy;
+        var w = WANDER * p.am;
+        ctx.fillRect(p.x + Math.sin(t * 1.6 + p.ph) * w,
+                     p.y + Math.cos(t * 1.3 + p.ph * 1.3) * w, dot, dot);
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    // It runs forever now, so it must stop being on screen to stop costing
+    // anything: off-viewport or backgrounded tab, no frames at all.
+    function sync(){
+      var want = tabOn && inView;
+      if (want && !running){ running = true; raf = requestAnimationFrame(tick); }
+      else if (!want && running){ running = false; cancelAnimationFrame(raf); }
+    }
+    function wake(){ sync(); }
+
+    function move(cx, cy){
+      var r = cv.getBoundingClientRect();
+      mx = cx - r.left; my = cy - r.top;
+      wake();
+    }
+    var onMove  = function(e){ move(e.clientX, e.clientY); };
+    var onTouch = function(e){
+      if (e.touches && e.touches[0]) move(e.touches[0].clientX, e.touches[0].clientY);
+    };
+    var onOut   = function(e){ if (!e.relatedTarget){ mx = my = -9999; wake(); } };
+    var onVis   = function(){ tabOn = !document.hidden; sync(); };
+    addEventListener('mousemove', onMove, { passive: true });
+    addEventListener('touchmove', onTouch, { passive: true });
+    addEventListener('mouseout', onOut);
+    document.addEventListener('visibilitychange', onVis);
+    var iob = null;
+    if ('IntersectionObserver' in window){
+      iob = new IntersectionObserver(function(es){
+        inView = es[0].isIntersecting; sync();
+      }, { rootMargin: '120px' });
+      iob.observe(host);
+    }
+
+    // Switching language rebuilds these lines from scratch, so the field has
+    // to be dismantled rather than abandoned — otherwise every toggle leaves
+    // another rAF loop and another five listeners running against a canvas
+    // that is no longer on the page.
+    ptDestroys.push(function(){
+      running = false; cancelAnimationFrame(raf);
+      removeEventListener('mousemove', onMove);
+      removeEventListener('touchmove', onTouch);
+      removeEventListener('mouseout', onOut);
+      document.removeEventListener('visibilitychange', onVis);
+      if (iob) iob.disconnect();
+      if (cv.parentNode) cv.parentNode.removeChild(cv);
+      host.__pt = false;
+    });
+
+    host.__ptTick = tick;          // test seam: drive a frame without rAF
+    host.__ptCount = pts.length;
+    host.__ptStart = function(){
+      for (var i = 0; i < pts.length; i++){
+        var p = pts[i];
+        var a = Math.random() * Math.PI * 2, r = 40 + Math.random() * 160;
+        p.x = p.hx + Math.cos(a) * r;
+        p.y = p.hy + Math.sin(a) * r;
+        p.vx = p.vy = 0;
+      }
+      host.style.color = 'transparent';
+      wake();
+    };
+    return true;
+  }
+
+  function initParticles(immediate){
+    if (REDUCED) return;
+    while (ptDestroys.length) ptDestroys.pop()();
+
+    // The field is built on the accent words alone, not their whole line —
+    // the accent sits mid-sentence now ("shape"), and rasterising the line
+    // would turn the plain words around it to brass dots too. Each line's
+    // contiguous accent run is wrapped in a span and that span is the host;
+    // splitLines flattens every word to a direct child of .ln-i, so a Range
+    // across the run can never partially select an element.
+    var accents = [].slice.call(document.querySelectorAll('.hero__line .mo-w.accent'));
+    var lines = [];
+    accents.forEach(function(a){
+      var l = a.closest('.ln-i');
+      if (l && lines.indexOf(l) < 0) lines.push(l);
+    });
+    var hosts = [];
+    lines.forEach(function(line){
+      var ws = line.querySelectorAll('.mo-w.accent');
+      var range = document.createRange();
+      range.setStartBefore(ws[0]);
+      range.setEndAfter(ws[ws.length - 1]);
+      var wrap = document.createElement('span');
+      wrap.className = 'pt-w';
+      range.surroundContents(wrap);
+      hosts.push(wrap);
+    });
+    if (!hosts.length) return;
+
+    var build = function(){
+      hosts.forEach(function(host){
+        if (!particleLine(host)) return;
+        var go = function(){ if (host.__ptStart) host.__ptStart(); };
+        // Re-entering mid-page: the reader is already looking at the line, so
+        // it must not replay the entrance — assemble at once.
+        if (immediate) return go();
+        if (host.closest('.is-in')) return setTimeout(go, 700);
+        var n = 0, t = setInterval(function(){      // wait for the line to arrive
+          if (host.closest('.is-in') || ++n > 80){ clearInterval(t); setTimeout(go, 700); }
+        }, 120);
+      });
+    };
+
+    // Thai only begins downloading when Thai text first renders, so straight
+    // after a switch the phrase would rasterise against a face the browser
+    // does not have yet. Ask for these exact strings in this exact font.
+    var cs = getComputedStyle(accents[0]);
+    var fstr = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+    var text = hosts.map(function(h){ return h.textContent; }).join('');
+    if (document.fonts && document.fonts.load){
+      try { document.fonts.load(fstr, text).then(build, build); return; }
+      catch (e){}
+    }
+    build();
+  }
+  // Wrapped: both callbacks pass an argument, which would land in `immediate`
+  // and skip the entrance on first load.
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ initParticles(); });
+  else addEventListener('load', function(){ initParticles(); });
+
+})();
+</script>
+
+
+<!-- ── Cursor-tracked figure ──────────────────────────────────────────── -->
+<style>
+/* Yaw comes from the sprite sheet — 24 pre-rendered angles per pitch. On a
+   fine pointer the sheet carries three real pitch blocks (up / level / down)
+   and a small CSS rotateX blends the 16° between blocks, so the head follows
+   the cursor on both axes; touch devices load the single-block sheet, where
+   pitch stays a light CSS tilt. The script chooses the sheet, so CSS ships
+   no image at all and only one file is ever downloaded. */
+.hero__figure{
+  position:absolute; z-index:0; pointer-events:none;
+  /* Anchored to the same centre and the same min(26vw,380px) offset as the
+     orb, so the lamp sits inside the rings and the pair moves as one. The
+     figure follows the orb in the DOM, which is what keeps it painted above
+     the rings at equal z-index. */
+  top:62%; left:50%; right:auto;
+  /* Capped at 255 because the sprite cell is 510px (a 600px render, cropped
+     tight to the lamp): on a 2x display that is an exact pixel match, and
+     stretching past it is the upscale that once made the old sheet soft. */
+  width:clamp(187px,20.4vw,255px); aspect-ratio:510/511;
+  transform:translate(calc(-50% + min(26vw,380px)),-50%);
+  opacity:0; transition:opacity .9s ease;
+}
+.hero__figure.is-ready{ opacity:1 }
+.hero__head{
+  width:100%; height:100%;
+  /* background-image arrives from script once the chosen sheet is decoded */
+  background-size:600% 400%;              /* 6 columns x 4 rows per block */
+  background-repeat:no-repeat;
+  background-position:40% 33.333%;        /* centre frame until JS runs */
+  will-change:background-position, transform;
+  /* the shade carries its own light, so it wants a soft lift off the ground
+     rather than the hard drop a solid object needs */
+  filter:drop-shadow(0 18px 44px rgba(0,0,0,.45));
+}
+@media (max-width:899px){
+  /* On a phone the lamp sits to the right, shoulder-height with the
+     sub-hero — z-index 0 keeps the copy reading over it, the same deal the
+     orb already has. left:auto undoes the desktop centre-anchor — with left
+     AND right both set, left wins and the lamp would hang off-centre. */
+  .hero__figure{
+    top:56%; bottom:auto; left:auto; right:clamp(8px,4vw,40px);
+    transform:translateY(-50%);
+    width:clamp(145px,37vw,204px); opacity:0;
+  }
+  .hero__figure.is-ready{ opacity:.92 }
+}
+@media (prefers-reduced-motion:reduce){
+  .hero__head{ transition:none }
+}
+</style>
+<script>
+(function(){
+  var head = document.querySelector('.hero__head');
+  var fig  = document.querySelector('.hero__figure');
+  if (!head || !fig) return;
+
+  var COLS = 6, ROWS = 4, N = 24;
+  var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* A fine pointer can be followed vertically, so it earns the heavier
+     seven-pitch sheet — 7° of real geometry per block, with the residual
+     between blocks blended by a small CSS tilt, so pitch reads continuous.
+     Touch keeps the light single-block sheet. */
+  var PITCHED = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var SHEET = PITCHED ? 'assets/head/lamp-sprite-3d.webp' : 'assets/head/lamp-sprite.webp';
+  var BLOCKS = PITCHED ? 7 : 1;
+  var PSTEP = 7;                        // degrees of pitch per block
+  var PM = (BLOCKS - 1) / 2;            // the level-headed middle block
+  var ROWSTOT = ROWS * BLOCKS;
+
+  var mid = (N - 1) / 2;
+  var cur = mid, target = mid;          // yaw frame index
+  var pCur = PM, pTarget = PM;          // pitch block, 0 = up … BLOCKS-1 = down
+  var tiltCur = 0, tiltTarget = 0;      // CSS degrees, single-block sheets only
+  var raf = 0, running = false, inView = true, tabOn = true;
+  var idle = true, t = 0;
+
+  function paint(){
+    var i = Math.max(0, Math.min(N - 1, Math.round(cur)));
+    var c = i % COLS, r = Math.floor(i / COLS);
+    var block = 0, rotX = tiltCur;
+    if (PITCHED){
+      var pf = Math.max(0, Math.min(BLOCKS - 1, pCur));
+      block = Math.round(pf);
+      rotX = -(pf - block) * PSTEP;
+    }
+    head.style.backgroundPosition =
+      (c / (COLS - 1) * 100).toFixed(2) + '% ' +
+      ((block * ROWS + r) / (ROWSTOT - 1) * 100).toFixed(2) + '%';
+    head.style.transform = 'rotateX(' + rotX.toFixed(2) + 'deg)';
+  }
+
+  function tick(){
+    t += 0.016;
+    if (idle){
+      // a slow look-around so it is alive on a phone, where there is no cursor
+      target = mid + Math.sin(t * 0.45) * (N * 0.16);
+      if (PITCHED) pTarget = PM + Math.sin(t * 0.31) * (PM * 0.5);
+      else tiltTarget = Math.sin(t * 0.31) * 2.2;
+    }
+    cur     += (target - cur) * 0.10;
+    pCur    += (pTarget - pCur) * 0.08;
+    tiltCur += (tiltTarget - tiltCur) * 0.08;
+    paint();
+    raf = requestAnimationFrame(tick);
+  }
+  function sync(){
+    var want = tabOn && inView && !REDUCED;
+    if (want && !running){ running = true; raf = requestAnimationFrame(tick); }
+    else if (!want && running){ running = false; cancelAnimationFrame(raf); }
+  }
+
+  head.__tick  = tick;                 // test seam: drive frames without rAF
+  head.__state = function(){ return { cur: cur, target: target, idle: idle, pCur: pCur, pTarget: pTarget }; };
+
+  var idleTimer = 0;
+  function look(cx, cy){
+    var r  = fig.getBoundingClientRect();
+    var ox = r.left + r.width / 2, oy = r.top + r.height / 2;
+    // Each side is normalised against its own available travel. The figure
+    // sits off to the right, so a shared denominator gave it a long reach to
+    // the left and a stub to the right — it could never fully turn toward a
+    // cursor on that side. Now the screen edge is full deflection either way.
+    var dx = (cx - ox) / Math.max(cx < ox ? ox : innerWidth - ox, 1);
+    var dy = (cy - oy) / Math.max(cy < oy ? oy : innerHeight - oy, 1);
+    dx = Math.max(-1, Math.min(1, dx));
+    dy = Math.max(-1, Math.min(1, dy));
+    target = mid + dx * mid;            // full sweep across the rendered range
+    if (PITCHED) pTarget = PM + dy * PM;   // cursor below the lamp → head pitches down
+    else tiltTarget = -dy * 7;
+    idle = false;
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(function(){ idle = true; t = 0; }, 2600);
+    sync();
+  }
+  addEventListener('mousemove', function(e){ look(e.clientX, e.clientY); }, { passive:true });
+  addEventListener('touchmove', function(e){
+    if (e.touches && e.touches[0]) look(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive:true });
+
+  document.addEventListener('visibilitychange', function(){ tabOn = !document.hidden; sync(); });
+  if ('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ inView = es[0].isIntersecting; sync(); },
+      { rootMargin:'150px' }).observe(fig);
+  }
+
+  // Nothing is shown until the sheet is decoded — a half-loaded sprite shows
+  // as a slice of the wrong frame. The image is also only attached here, so
+  // the page downloads exactly one sheet: the one this device will use.
+  var pre = new Image();
+  pre.onload = function(){
+    head.style.backgroundImage = 'url(' + SHEET + ')';
+    head.style.backgroundSize = '600% ' + (BLOCKS * 400) + '%';
+    fig.classList.add('is-ready'); paint(); sync();
+  };
+  pre.onerror = function(){ /* leave it hidden rather than show a broken box */ };
+  pre.src = SHEET;
+})();
+
+/* Case-study reels. The source lives in data- attributes and is only ever
+   attached after the gates below pass — so a visitor who should not get video
+   issues no request at all and simply keeps the poster, which is the same
+   JPEG this page shipped before reels existed. */
+(function(){
+  var vids = document.querySelectorAll('video.shot');
+  if (!vids.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  /* navigator.connection is undefined in Safari, so iPhones fall through and
+     load the mobile cut. That cut's 250 KB ceiling is enforced by
+     tools/check.mjs precisely because this gate cannot protect them. */
+  var conn = navigator.connection;
+  if (conn) {
+    if (conn.saveData) return;
+    if (/(^|-)2g$|^3g$/.test(conn.effectiveType || '')) return;
+  }
+
+  var wide = window.matchMedia('(min-width: 900px)').matches;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      /* e.target is the watched ancestor, not the video — see below. */
+      var v = e.target.querySelector ? e.target.querySelector('video.shot') : null;
+      if (!v) v = e.target;
+      if (e.isIntersecting) {
+        if (!v.src) {
+          v.src = v.getAttribute(wide ? 'data-reel-desktop' : 'data-reel-mobile');
+        }
+        /* Autoplay can still be refused. An unhandled rejection in the
+           console is exactly what a technical prospect notices. */
+        var p = v.play();
+        if (p && p.catch) p.catch(function(){});
+      } else if (!v.paused) {
+        v.pause();
+      }
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.2 });
+
+  /* We watch an ancestor rather than the video itself. The video sits inside
+     .frame, which the wipe-in animation clips to zero width (clip-path:
+     inset(0 100% 0 0)) until its own observer adds .is-in. IntersectionObserver
+     clips the intersection rectangle by ancestor clip regions, so while the
+     frame is unrevealed the video's intersectionRatio is exactly 0 and this
+     threshold: 0.2 can never be met — playback would then be hostage to the
+     wipe animation's timing (worst case its ~6s failsafe). .feature__open is
+     never clipped by that animation, so watch it instead and resolve the
+     actual video back out of it. Falls back sensibly if markup changes. */
+  var i, targets = [];
+  for (i = 0; i < vids.length; i++) {
+    targets.push(vids[i].closest ? (vids[i].closest('.feature__open') || vids[i].parentElement || vids[i]) : (vids[i].parentElement || vids[i]));
+  }
+  /* The cut is chosen once. Re-fetching a second file because someone rotated
+     a phone would cost more than it returns. */
+  for (i = 0; i < targets.length; i++) io.observe(targets[i]);
+})();
+</script>
+
+<!-- ── Scroll layer ─────────────────────────────────────────────────────
+     Everything here scrubs with the page rather than playing once: the
+     word-fill paragraphs, the parallax behind each mount, the heading
+     drift, the marquee. Plus the two desktop-only flourishes — cursor and
+     magnetic buttons. Every class that hides or dims content is added by
+     this script, so a no-JS visit sees the plain page, never a faint one. -->
+<style>
+/* 7a — word scrub: each word starts as a ghost of the page's bone and
+   fills to its real colour as the paragraph crosses the viewport band.
+   colour, not opacity, so a word inside .accent or .t-body lands on its
+   own colour rather than a shared white. */
+.scrub .sw{ color:rgba(236,230,220,.16); transition:color .35s ease }
+.scrub .sw.on{ color:inherit }
+
+/* 7b — parallax mount: script wraps each screenshot in .px so the photo
+   can drift behind the mat without ever showing an edge. translate before
+   scale, so the drift is real pixels and stays inside the 12% of slack the
+   scale creates. */
+.px{ display:block; overflow:hidden; border-radius:1px }
+.px > .shot{ transform:translate3d(0,var(--px,0px),0) scale(1.12); will-change:transform }
+
+/* 7c — hairlines draw themselves on arrival */
+.rule.mo-rule{ transform:scaleX(0); transform-origin:0 50%; transition:transform 1.3s cubic-bezier(.16,1,.3,1) }
+.rule.mo-rule.is-in{ transform:scaleX(1) }
+
+/* 7d — section headings ride a few px slower than the page */
+.mo-drift{ transform:translate3d(0,var(--dy,0px),0); will-change:transform }
+
+/* 7e — marquee: outlined ghost type with the one solid word in brass.
+   The band is styled entirely here so it reads as typography even before
+   (or without) the script that moves it. */
+.mq{ overflow:hidden; padding-block:clamp(34px,7vw,64px) }
+.mq__track{ display:inline-flex; align-items:center; white-space:nowrap; will-change:transform }
+.mq__u{ display:inline-flex; align-items:center; flex:none }
+.mq__w{
+  font-family:var(--serif); font-weight:700; letter-spacing:.02em;
+  text-transform:uppercase; line-height:1;
+  font-size:clamp(2.4rem,7.5vw,5.6rem);
+  color:transparent; -webkit-text-stroke:1px rgba(236,230,220,.30);
+}
+.mq__w--solid{ color:var(--brass); -webkit-text-stroke:0 }
+.mq__s{
+  flex:none; width:.13em; height:.13em; margin-inline:.5em;
+  border-radius:50%; background:var(--brass); opacity:.8;
+  font-size:clamp(2.4rem,7.5vw,5.6rem);
+}
+
+/* 7f — cursor: a brass dot with a trailing ring. The ring grows over any
+   link and becomes a filled "VIEW" disc over a project card. Sized by
+   width/height rather than transform so the label inside never distorts. */
+.has-cur, .has-cur a, .has-cur button{ cursor:none }
+.cur-dot,.cur-ring{
+  position:fixed; top:0; left:0; z-index:100; pointer-events:none;
+  border-radius:50%; opacity:0;
+}
+.cur-dot{ width:6px; height:6px; margin:-3px 0 0 -3px; background:var(--brass); transition:opacity .25s ease }
+.cur-ring{
+  width:38px; height:38px; margin:-19px 0 0 -19px;
+  border:1px solid var(--brass-soft);
+  display:flex; align-items:center; justify-content:center;
+  transition:width .3s cubic-bezier(.2,.7,.3,1), height .3s cubic-bezier(.2,.7,.3,1),
+             margin .3s cubic-bezier(.2,.7,.3,1),
+             background-color .25s ease, border-color .25s ease, opacity .25s ease;
+}
+.cur-ring b{
+  font-family:var(--sans); font-weight:600; font-size:.5625rem;
+  letter-spacing:.14em; color:var(--ink);
+  opacity:0; transition:opacity .2s ease;
+}
+.cur-ring.is-link{ width:52px; height:52px; margin:-26px 0 0 -26px; border-color:var(--brass) }
+.cur-ring.is-view{
+  width:78px; height:78px; margin:-39px 0 0 -39px;
+  background:var(--brass); border-color:var(--brass);
+}
+.cur-ring.is-view b{ opacity:1 }
+.cur-ring.is-down{ width:30px; height:30px; margin:-15px 0 0 -15px }
+
+@media (prefers-reduced-motion:reduce){
+  .rule.mo-rule{ transform:none; transition:none }
+  .px > .shot{ transform:none }
+  .mo-drift{ transform:none }
+}
+</style>
+<script>
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var vh = innerHeight;
+  addEventListener('resize', function(){ vh = innerHeight; }, { passive:true });
+
+  /* ── word scrub ─────────────────────────────────────────────────────
+     Intl.Segmenter finds word boundaries in Thai, which has no spaces —
+     whitespace splitting would scrub a Thai paragraph in three giant
+     chunks. Browsers without it keep the whitespace fallback, which is
+     correct for English and merely coarse for Thai. */
+  var seg = null;
+  if (window.Intl && Intl.Segmenter){
+    try { seg = new Intl.Segmenter(undefined, { granularity:'word' }); } catch(e){}
+  }
+  function tokens(text){
+    if (!seg) return text.split(/(\s+)/);
+    return Array.from(seg.segment(text)).map(function(s){ return s.segment; });
+  }
+
+  var SCRUB_SEL = '.about__body, .feature__lede, .offer__lead';
+  var scrubs = [];
+  var SORIG = new WeakMap();
+
+  function splitScrub(el){
+    if (!SORIG.has(el)) SORIG.set(el, el.innerHTML);
+    el.innerHTML = SORIG.get(el);
+    var words = [];
+    (function walk(node){
+      if (node.nodeType === 3){
+        var frag = document.createDocumentFragment();
+        tokens(node.textContent).forEach(function(t){
+          if (!t) return;
+          if (/^\s+$/.test(t)){ frag.appendChild(document.createTextNode(t)); return; }
+          var s = document.createElement('span');
+          s.className = 'sw';
+          s.textContent = t;
+          frag.appendChild(s);
+          words.push(s);
+        });
+        node.parentNode.replaceChild(frag, node);
+        return;
+      }
+      if (node.nodeType !== 1) return;
+      [].slice.call(node.childNodes).forEach(walk);
+    })(el);
+    if (!words.length) return;
+    el.classList.add('scrub');
+    scrubs.push({ el: el, words: words, lit: -1 });
+  }
+  [].slice.call(document.querySelectorAll(SCRUB_SEL)).forEach(splitScrub);
+
+  function scrubTick(){
+    for (var i = 0; i < scrubs.length; i++){
+      var s = scrubs[i], r = s.el.getBoundingClientRect();
+      if (r.bottom < -80 || r.top > vh + 80) continue;
+      /* p runs 0→1 while the paragraph travels from 85% of the viewport up
+         to where its last line clears 40% — reading pace, roughly. */
+      var p = (vh * 0.85 - r.top) / (vh * 0.45 + r.height);
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      var n = Math.round(p * s.words.length);
+      if (n === s.lit) continue;
+      var prev = s.lit < 0 ? 0 : s.lit;
+      for (var w = Math.min(prev, n); w < Math.max(prev, n); w++)
+        s.words[w].classList.toggle('on', w < n);
+      s.lit = n;
+    }
+  }
+
+  /* The EN/TH toggle rewrites these paragraphs, which throws the word
+     spans away — re-split from whatever it wrote and repaint at once. */
+  var langBox = document.getElementById('lang');
+  if (langBox){
+    langBox.addEventListener('click', function(){
+      setTimeout(function(){
+        scrubs.length = 0;
+        [].slice.call(document.querySelectorAll(SCRUB_SEL)).forEach(function(el){
+          SORIG.delete(el);
+          splitScrub(el);
+        });
+        scrubTick();
+      }, 0);
+    });
+  }
+
+  /* ── parallax mounts ────────────────────────────────────────────────
+     Drift is proportional to the shot's own height and capped below the
+     slack the 1.12 scale creates, so no width of screen ever shows the
+     photo's edge inside the mat. */
+  var shots = [].slice.call(document.querySelectorAll('.frame .shot')).map(function(img){
+    var wrap = document.createElement('span');
+    wrap.className = 'px';
+    img.parentNode.insertBefore(wrap, img);
+    wrap.appendChild(img);
+    return img;
+  });
+  function pxTick(){
+    for (var i = 0; i < shots.length; i++){
+      var r = shots[i].getBoundingClientRect();
+      if (r.bottom < -60 || r.top > vh + 60) continue;
+      var rel = (r.top + r.height / 2 - vh / 2) / vh;
+      rel = rel < -1 ? -1 : rel > 1 ? 1 : rel;
+      shots[i].style.setProperty('--px', (rel * -(r.height * 0.05)).toFixed(1) + 'px');
+    }
+  }
+
+  /* ── heading drift ──────────────────────────────────────────────────── */
+  var drifts = [].slice.call(document.querySelectorAll('#feature-name, #work-head, #contact-head'));
+  drifts.forEach(function(el){ el.classList.add('mo-drift'); });
+  function driftTick(){
+    for (var i = 0; i < drifts.length; i++){
+      var r = drifts[i].getBoundingClientRect();
+      if (r.bottom < -120 || r.top > vh + 120) continue;
+      var rel = (r.top + r.height / 2 - vh / 2) / vh;
+      drifts[i].style.setProperty('--dy', (rel * 26).toFixed(1) + 'px');
+    }
+  }
+
+  /* ── hairlines + price count-up ─────────────────────────────────────
+     Both are one-shot arrivals, so they share an observer. The rules are
+     only armed if the observer exists — a browser without it keeps its
+     hairlines drawn. */
+  var rules = [];
+  var price = document.querySelector('.offer__amount');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        if (e.target === price) countUp();
+        io.unobserve(e.target);
+      });
+    }, { rootMargin:'0px 0px -8% 0px' });
+    rules = [].slice.call(document.querySelectorAll('.rule'));
+    rules.forEach(function(rl){ rl.classList.add('mo-rule'); io.observe(rl); });
+    if (price) io.observe(price);
+  }
+  function countUp(){
+    var tpl = price.textContent;
+    var m = tpl.match(/\d+/);
+    if (!m) return;
+    var target = parseInt(m[0], 10), t0 = null, DUR = 1200;
+    var frame = function(ts){
+      if (t0 === null) t0 = ts;
+      var k = Math.min(1, (ts - t0) / DUR);
+      k = 1 - Math.pow(1 - k, 3);              /* fast out of the gate, soft landing */
+      price.textContent = tpl.replace(m[0], String(Math.round(target * k)));
+      if (k < 1) requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+
+  /* ── marquee ────────────────────────────────────────────────────────
+     Base drift plus whatever the reader's own scroll adds — the band
+     answers the hand on the wheel. One unit wraps modulo its own width,
+     so the loop is seamless at any speed. */
+  var mq = document.querySelector('.mq');
+  var track = mq && mq.querySelector('.mq__track');
+  var mqOn = false, mqX = 0, mqUnit = 0, vel = 0, lastY = pageYOffset;
+  if (track){
+    var unit = track.firstElementChild;
+    var fill = function(){
+      mqUnit = unit.getBoundingClientRect().width;
+      if (!mqUnit) return;
+      while (track.children.length * mqUnit < innerWidth * 2)
+        track.appendChild(unit.cloneNode(true));
+    };
+    fill();
+    addEventListener('resize', fill, { passive:true });
+    /* the type is measured, so remeasure once the display face arrives */
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fill);
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ mqOn = es[0].isIntersecting; },
+        { rootMargin:'80px' }).observe(mq);
+    } else { mqOn = true; }
+  }
+  function mqTick(){
+    var y = pageYOffset, dy = y - lastY;
+    lastY = y;
+    if (!track || !mqOn || !mqUnit) return;
+    vel = vel * 0.88 + dy;
+    mqX -= 0.7 + Math.min(7, Math.abs(vel) * 0.05);
+    if (mqX <= -mqUnit) mqX += mqUnit;
+    track.style.transform = 'translate3d(' + mqX.toFixed(2) + 'px,0,0)';
+  }
+
+  /* ── cursor ─────────────────────────────────────────────────────────── */
+  var curTick = function(){};
+  if (FINE){
+    var dot = document.createElement('div');
+    var ring = document.createElement('div');
+    var lab = document.createElement('b');
+    dot.className = 'cur-dot'; ring.className = 'cur-ring';
+    dot.setAttribute('aria-hidden','true'); ring.setAttribute('aria-hidden','true');
+    ring.appendChild(lab);
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    document.documentElement.classList.add('has-cur');
+
+    var cx = -100, cy = -100, rx = -100, ry = -100, shown = false;
+    addEventListener('mousemove', function(e){
+      cx = e.clientX; cy = e.clientY;
+      if (!shown){
+        shown = true;
+        rx = cx; ry = cy;                                /* arrive where the cursor is, */
+        dot.style.opacity = ring.style.opacity = '1';    /* not glide in from 0,0 */
+      }
+    }, { passive:true });
+    document.addEventListener('mouseleave', function(){
+      shown = false;
+      dot.style.opacity = ring.style.opacity = '0';
+    });
+    curTick = function(){
+      if (!shown) return;
+      rx += (cx - rx) * 0.16; ry += (cy - ry) * 0.16;
+      dot.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+      ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0)';
+    };
+    document.addEventListener('mouseover', function(e){
+      if (!e.target.closest) return;
+      var view = e.target.closest('.card, .feature__open');
+      var link = !view && e.target.closest('a, button');
+      ring.classList.toggle('is-view', !!view);
+      ring.classList.toggle('is-link', !!link);
+      dot.style.visibility = view ? 'hidden' : '';
+      if (view) lab.textContent =
+        document.documentElement.getAttribute('lang') === 'th' ? 'ดู' : 'VIEW';
+    });
+    addEventListener('mousedown', function(){ ring.classList.add('is-down'); });
+    addEventListener('mouseup', function(){ ring.classList.remove('is-down'); });
+
+    /* magnetic buttons: lean toward the hand, spring home on the element's
+       own .18s transform transition */
+    [].slice.call(document.querySelectorAll('.cta, .nav__cta')).forEach(function(el){
+      el.addEventListener('mousemove', function(e){
+        var r = el.getBoundingClientRect();
+        var mx = (e.clientX - (r.left + r.width / 2)) * 0.22;
+        var my = (e.clientY - (r.top + r.height / 2)) * 0.34;
+        el.style.transform = 'translate(' + mx.toFixed(1) + 'px,' + my.toFixed(1) + 'px)';
+      });
+      el.addEventListener('mouseleave', function(){ el.style.transform = ''; });
+    });
+  }
+
+  /* ── one loop drives the whole layer ────────────────────────────────
+     Continuous while the tab is visible — each tick early-exits anything
+     off screen, and the marquee needs frames even when the page is still. */
+  var running = false, rafId = 0;
+  function loop(){
+    scrubTick(); pxTick(); driftTick(); mqTick(); curTick();
+    rafId = requestAnimationFrame(loop);
+  }
+  function sync(){
+    var want = !document.hidden;
+    if (want && !running){ running = true; lastY = pageYOffset; rafId = requestAnimationFrame(loop); }
+    else if (!want && running){ running = false; cancelAnimationFrame(rafId); }
+  }
+  document.addEventListener('visibilitychange', sync);
+  sync();
+
+  /* Failsafe, same policy as the reveal code: this script dimmed the scrub
+     words and zeroed the rules, so a silent death here must hand back the
+     static page, not a broken one. Gated on the loop being dead — while it
+     runs, the observers registered beside it are alive too, and completing
+     the rules early would quietly cancel the draw for a slow reader. */
+  setTimeout(function(){
+    if (running) return;
+    scrubs.forEach(function(s){ s.el.classList.remove('scrub'); });
+    rules.forEach(function(rl){ rl.classList.add('is-in'); });
+  }, 6000);
+})();
+</script>
+
+</body>
+</html>
